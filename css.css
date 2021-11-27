@@ -1,0 +1,309 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    font-family: Arial,Helvetica, sans-serif;
+    background: black url("pictures/pozadie.png") no-repeat;
+    background-size: 100%;
+}
+
+/* Header/Blog Title */
+.header {
+    width: 100%;
+    padding: 30px;
+    text-align: left;
+    background: rgba(250,250,250,0.4);
+    display: block;
+    /*position: sticky;*/
+    /*top: 1px;*/
+}
+
+.header h1 {
+    font-size: 60px;
+    font-family: Arial,Helvetica, sans-serif;
+    color: black;
+    text-decoration: none;
+}
+
+.header:hover {
+    background: rgba(250,250,250,0.5);
+}
+
+/* Style the top navigation bar */
+.topnav {
+    overflow: hidden;
+    background-color: #333;
+}
+
+/* Style the topnav links */
+.topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 15px 30px;
+    text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {
+    float: left;
+    width: 65%;
+    padding-left: 10%;
+}
+
+/* Right column */
+.rightcolumn {
+    float: left;
+    width: 35%;
+    /*background-color: #f1f1f1;*/
+    padding-left: 20px;
+    padding-right: 10%;
+}
+
+/* Add a card effect for articles */
+.card {
+    padding: 20px;
+    margin-top: 20px;
+    background: rgba(250,250,250,0.6);
+    /*height: 250px;*/
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Footer */
+.footer {
+    padding: 20px;
+    text-align: center;
+    background: #ddd;
+    margin-top: 20px;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+    .leftcolumn, .rightcolumn {
+        width: 100%;
+        padding: 0;
+    }
+
+}
+
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 400px) {
+    .topnav a {
+        float: none;
+        width: 100%;
+    }
+}
+
+.responsive {
+    width: 100%;
+    height: auto;
+}
+
+.icon {
+    padding: 5px 20px 5px 5px;
+    float: left;
+}
+
+.icon img {
+    width: auto;
+    height: 60px;
+}
+
+.description h2 {
+    float: left;
+}
+
+.description {
+    width: 100%;
+    height: auto;
+    text-align: right;
+    padding-bottom: 25px;
+}
+
+p {
+    text-align: left;
+    font-size: 18px;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.flex-item-left {
+    flex: 50%;
+    padding-right: 10px;
+}
+
+.flex-item-left img {
+    width: 100%;
+}
+
+.flex-item-right {
+    padding-left: 10px;
+    flex: 50%;
+}
+
+.ponuky {
+    text-align: center;
+    padding: 10px;
+    flex-direction: column;
+}
+
+.ponuky h2 {
+    padding-bottom: 10px;
+}
+
+.ponuky img {
+    width: 60%;
+    height: auto;
+}
+
+.ponuky a:hover {
+    color: #dddddd;
+}
+
+hr {
+    margin-bottom: 10px;
+    border-color: #333333;
+    background-color: #333333;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+}
+
+.card h1 {
+    padding-bottom: 10px;
+    text-align: center;
+    font-size: 40px;
+}
+
+.card h3 {
+    font-size: 25px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+ul.a, ul.b {
+    list-style-type: square;
+    list-style-position: outside;
+    padding-left: 20px;
+    text-align: left;
+}
+
+span {
+    font-weight: bold;
+}
+
+.button {
+    background-color: orange;
+    border: none;
+    color: #333333;
+    padding: 15px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 25px;
+    margin: 15px auto;
+    cursor: pointer;
+    border-radius: 8px;
+    display: block;
+}
+
+.poziadavky {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.poziadavky td, .poziadavky th{
+    padding: 10px;
+    border: 1px solid black;
+}
+
+.poziadavky tr:nth-child(even) {
+    background-color: #AAAAAA;
+}
+
+.poziadavky tr:hover {
+    background-color: #BBBBBB;
+}
+
+.poziadavky th {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #333333;
+    color: white;
+}
+
+.poziadavky tr td:nth-child(1) {
+    text-align: center;
+    font-weight: bold;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.photo {
+    position: relative;
+    width: calc(100%/4 - 6px);
+    padding-top: calc(56%/4 - 6px);
+    flex-grow: 1;
+    margin: 2px;
+    overflow: hidden;
+    border: 1px solid black;
+}
+
+.photo > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s;
+}
+
+@media (max-width: 1000px) {
+    .photo {
+        width: calc(100%/2 - 4px);
+        padding-top: calc(56%/2 - 4px);
+    }
+}
+
+@media (max-width: 600px) {
+    .photo {
+        width: calc(100% - 4px);
+        padding-top: calc(56% - 4px);
+    }
+}
+
+.photo:hover img {
+    opacity: 0.7;
+    border: 1px solid #f2f2f2;
+}
