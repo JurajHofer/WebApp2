@@ -10,7 +10,7 @@ toggleButtonPwd.addEventListener('click', () => {
         toggleButtonPwd.innerHTML = 'ZRUŠIŤ';
    } else {
        divListPwd.style.display = 'none';
-       toggleButtonPwd.innerHTML = 'ZMENIŤ HESLO';
+       toggleButtonPwd.innerHTML = 'ZMENIŤ';
    }
 });
 
@@ -26,7 +26,7 @@ toggleButtonInfo.addEventListener('click', () => {
         toggleButtonInfo.innerHTML = 'ZRUŠIŤ';
     } else {
         divListInfo.style.display = 'none';
-        toggleButtonInfo.innerHTML = 'ZMENIŤ UDAJE';
+        toggleButtonInfo.innerHTML = 'ZMENIŤ';
     }
 });
 
@@ -34,7 +34,7 @@ toggleButtonInfo.addEventListener('click', () => {
 const toggleButtonDel = document.querySelector('#confirmdel');
 
 toggleButtonDel.addEventListener('click', e => {
-   var result = confirm('Si si isty?');
+   var result = confirm('Ste si tým istý? Účet bude natrvalo odstránený!');
    if (result == false) {
        e.preventDefault();
    }

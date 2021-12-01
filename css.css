@@ -88,10 +88,6 @@ body {
 }
 
 .center{
-    /*position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);*/
     width: 400px;
     max-width: 400px;
     background: rgba(250,250,250,0.6);
@@ -100,7 +96,7 @@ body {
 
 .center h3{
     text-align: center;
-    padding: 20px 0 10px 0;
+    padding: 20px 0 15px 0;
     border-bottom: 1px solid black;
     font-size: 26px;
 }
@@ -116,6 +112,17 @@ form .textfield{
     margin: 30px 0;
 }
 
+.udaje{
+    padding-left: 40px;
+    padding-top: 10px;
+    font-size: 20px;
+}
+
+.udaje2{
+    padding-left: 40px;
+    font-size: 20px;
+}
+
 .textfield input{
     width: 100%;
     padding: 0 5px;
@@ -126,6 +133,8 @@ form .textfield{
     outline: none;
 
 }
+
+.textfield button{}
 
 /* treba na transparentne pozadie pri autodoplnani, lebo inak bz to zmenilo na bielu*/
 input:-webkit-autofill,
@@ -181,6 +190,26 @@ input[type="submit"]{
 }
 
 input[type="submit"]:hover{
+    border-color: orange;
+    transition: .5s;
+}
+
+.zmenit {
+    background-color: orange;
+    border-radius: 8px;
+    width: 30%;
+    font-size: 12px;
+    font-weight: bold;
+    height: 25px;
+    outline: none;
+    border: 1px solid;
+    color: #333333;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.zmenit[type="button"]:hover{
     border-color: orange;
     transition: .5s;
 }

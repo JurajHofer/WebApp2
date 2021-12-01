@@ -16,46 +16,63 @@
     <?php include('./partials/header.php') ?>
 </div>
 
-<div class="row">
-    <div class="leftcolumn">
-        <div class="card">
-            <form action="includes/profile.inc.php" method="post">
-                <h3> Správa Účtu</h3>
-                <a>Názov účtu </a>
-                <?php echo $_SESSION["useruid"] ?>
-                <br>
-                <a>Emailová adresa </a>
-                <?php echo $_SESSION["useremail"] ?>
-                <br>
-                <button type="button" id="infobtn">ZMENIŤ UDAJE</button>
-                <div class="hiddeninfo">
-                    <input type="text" name="uid">
-                    <input type="text" name="email">
-                    <input type="submit" name="submit" value="ZMENIŤ">
-                </div>
-            </form>
-
-            <form action="includes/password.inc.php" method="post">
-                <button type="button" id="pwdbtn">ZMENIŤ HESLO</button>
-                <div class="hiddenpwd">
-                    <input type="password" name="pwd">
-                    <input type="password" name="pwdrepeat">
-                    <input type="submit" name="submit" value="ZMENIŤ">
-                </div>
-            </form>
-
-            <form action="includes/deluser.inc.php" method="post">
-                <input type="submit" name="submit" id="confirmdel" value="VYMAZAŤ">
-            </form>
+<div class="windowreg">
+    <div class="center">
+        <h3> Správa Účtu</h3>
+        <div class="udaje">
+            Názov účtu :
+            <?php echo $_SESSION["useruid"] ?>
+            <br>
+            Email :
+            <?php echo $_SESSION["useremail"] ?>
         </div>
-    </div>
 
-    <div class="rightcolumn">
-        <div class="card">
-            <div class="ponuky">
-                <?php include('./partials/ponuky.php') ?>
+        <form action="includes/profile.inc.php" method="post">
+            <button class="zmenit" type="button" id="infobtn">ZMENIŤ</button>
+            <hr>
+            <div class="hiddeninfo">
+                <div class="textfield">
+                    <input type="text" name="uid" value="<?php echo $_SESSION["useruid"] ?>">
+                    <span></span>
+                    <label> Login</label>
+                </div>
+                <div class="textfield">
+                    <input type="text" name="email" value="<?php echo $_SESSION["useremail"] ?>">
+                    <span></span>
+                    <label> Email</label>
+                </div>
+                <input type="submit" name="submit" value="ZMENIŤ">
             </div>
+        </form>
+
+        <div class="udaje2">
+            Zmena hesla
         </div>
+
+        <form action="includes/password.inc.php" method="post">
+            <button class="zmenit" type="button" id="pwdbtn">ZMENIŤ</button>
+            <hr>
+            <div class="hiddenpwd">
+                <div class="textfield">
+                    <input type="password" name="pwd" required>
+                    <span></span>
+                    <label> Heslo</label>
+                </div>
+                <div class="textfield">
+                    <input type="password" name="pwdrepeat" required>
+                    <span></span>
+                    <label> Potvrď Heslo</label>
+                </div>
+                <input type="submit" name="submit" value="ZMENIŤ">
+            </div>
+        </form>
+
+        <div class="udaje2">
+            Odstránenie účtu
+        </div>
+        <form action="includes/deluser.inc.php" method="post">
+            <button class="zmenit" type="submit" name="submit" id="confirmdel">ODSTRÁNIŤ</button>
+        </form>
     </div>
 </div>
 
