@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,10 +19,34 @@ session_start();
 <div class="row">
     <div class="leftcolumn">
         <div class="card">
-            <h3> Správa Účtu</h3>
-            <a>Meno: <?php echo $_SESSION["useruid"] ?></a>
-            <a>Heslo: <?php echo $_SESSION["userpwd"] ?></a>
-            <a>Email: <?php echo $_SESSION["useremail"] ?></a>
+            <form action="includes/profile.inc.php" method="post">
+                <h3> Správa Účtu</h3>
+                <a>Názov účtu </a>
+                <?php echo $_SESSION["useruid"] ?>
+                <br>
+                <a>Emailová adresa </a>
+                <?php echo $_SESSION["useremail"] ?>
+                <br>
+                <button type="button" id="infobtn">ZMENIŤ UDAJE</button>
+                <div class="hiddeninfo">
+                    <input type="text" name="uid">
+                    <input type="text" name="email">
+                    <input type="submit" name="submit" value="ZMENIŤ">
+                </div>
+            </form>
+
+            <form action="includes/password.inc.php" method="post">
+                <button type="button" id="pwdbtn">ZMENIŤ HESLO</button>
+                <div class="hiddenpwd">
+                    <input type="password" name="pwd">
+                    <input type="password" name="pwdrepeat">
+                    <input type="submit" name="submit" value="ZMENIŤ">
+                </div>
+            </form>
+
+            <form action="includes/deluser.inc.php" method="post">
+                <input type="submit" name="submit" id="confirmdel" value="VYMAZAŤ">
+            </form>
         </div>
     </div>
 
@@ -40,5 +62,6 @@ session_start();
 <div class="footer">
     <?php include('./partials/footer.php') ?>
 </div>
+<script src="profil.js"></script>
 </body>
 </html>

@@ -1,26 +1,24 @@
 <?php
 
-class LoginContr extends Login {
+class DeluserContr extends Deluser {
     private $uid;
-    private $pwd;
 
-    public function __construct($uid, $pwd) {
+    public function __construct($uid) {
         $this->uid = $uid;
-        $this->pwd = $pwd;
     }
 
-    public function loginUser() {
+    public function deleteUser() {
         if ($this->emptyInput() == false) {
             header("location: ../index.php?error=emptyinput");
             exit();
         }
 
-        $this->getUser($this->uid, $this->pwd);
+        $this->delUser($this->uid);
     }
 
     private function emptyInput() {
         $result = null;
-        if (empty($this->uid) || empty($this->pwd)) {
+        if (empty($this->uid)) {
             $result = false;
         } else {
             $result = true;
