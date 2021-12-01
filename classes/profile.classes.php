@@ -12,7 +12,7 @@ class Profile extends Dbh {
 
         if ($stmt->rowCount() == 0) {
             $stmt = null;
-            header("location: ../index.php?error=usernotfound");
+            header("location: ../index.php?error=samedata");
             exit();
         }
 
@@ -22,7 +22,7 @@ class Profile extends Dbh {
         $stmt = null;
     }
 
-    protected function checkUser($uid, $email) {
+    protected function checkUser($uid, $email, $uidcurr, $emailcurr) {
         $stmt = $this->connect()->prepare('SELECT users_uid FROM users WHERE users_uid = ? OR users_email = ?;');
 
         if (!$stmt->execute(array($uid, $email))) {
@@ -32,11 +32,20 @@ class Profile extends Dbh {
         }
 
         $resultCheck = null;
-        if ($stmt->rowCount() > 0) {
-            $resultCheck = false;
+        if ($uid == $uidcurr || $email == $emailcurr || ($uid == $uidcurr && $email == $emailcurr)) {
+            if ($stmt->rowCount() > 1) {
+                $resultCheck = false;
+            } else {
+                $resultCheck = true;
+            }
         } else {
-            $resultCheck = true;
+            if ($stmt->rowCount() > 0) {
+                $resultCheck = false;
+            } else {
+                $resultCheck = true;
+            }
         }
+
         return $resultCheck;
     }
 

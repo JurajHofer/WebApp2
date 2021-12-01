@@ -29,20 +29,21 @@
 
         <form action="includes/profile.inc.php" method="post">
             <button class="zmenit" type="button" id="infobtn">ZMENIŤ</button>
-            <hr>
             <div class="hiddeninfo">
                 <div class="textfield">
-                    <input type="text" name="uid" value="<?php echo $_SESSION["useruid"] ?>">
+                    <input type="text" name="uid" class="form__input" id="uid1"  value="<?php echo $_SESSION["useruid"] ?>">
                     <span></span>
                     <label> Login</label>
                 </div>
                 <div class="textfield">
-                    <input type="text" name="email" value="<?php echo $_SESSION["useremail"] ?>">
+                    <input type="text" name="email" id="email" value="<?php echo $_SESSION["useremail"] ?>">
                     <span></span>
                     <label> Email</label>
                 </div>
+
                 <input type="submit" name="submit" value="ZMENIŤ">
             </div>
+            <hr>
         </form>
 
         <div class="udaje2">
@@ -51,7 +52,6 @@
 
         <form action="includes/password.inc.php" method="post">
             <button class="zmenit" type="button" id="pwdbtn">ZMENIŤ</button>
-            <hr>
             <div class="hiddenpwd">
                 <div class="textfield">
                     <input type="password" name="pwd" required>
@@ -65,6 +65,7 @@
                 </div>
                 <input type="submit" name="submit" value="ZMENIŤ">
             </div>
+            <hr>
         </form>
 
         <div class="udaje2">
@@ -80,5 +81,6 @@
     <?php include('./partials/footer.php') ?>
 </div>
 <script src="profil.js"></script>
+<script src="login.js"></script>
 </body>
 </html>

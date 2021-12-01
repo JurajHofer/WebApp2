@@ -4,11 +4,15 @@ class ProfileContr extends Profile {
     private $uid;
     private $id;
     private $email;
+    private $uidcurr;
+    private $emailcurr;
 
-    public function __construct($uid, $id, $email) {
+    public function __construct($uid, $id, $email, $uidcurr, $emailcurr) {
         $this->uid = $uid;
         $this->id = $id;
         $this->email = $email;
+        $this->uidcurr = $uidcurr;
+        $this->emailcurr = $emailcurr;
     }
 
     public function updUser() {
@@ -38,7 +42,7 @@ class ProfileContr extends Profile {
 
     private function emptyInput() {
         $result = null;
-        if (empty($this->uid) || empty($this->id) || empty($this->email)) {
+        if (empty($this->uid) || empty($this->id) || empty($this->email) || empty($this->uidcurr) || empty($this->emailcurr)){
             $result = false;
         } else {
             $result = true;
@@ -58,7 +62,7 @@ class ProfileContr extends Profile {
 
     private function uidTakenCheck() {
         $result = null;
-        if (!$this->checkUser($this->uid,$this->email)) {
+        if (!$this->checkUser($this->uid,$this->email, $this->uidcurr, $this->emailcurr)) {
             $result = false;
         } else {
             $result = true;

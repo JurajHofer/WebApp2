@@ -17,18 +17,20 @@
     <div class="windowlog">
         <div class="center">
             <h3> PRIHLÁSENIE</h3>
-            <form action="includes/login.inc.php" method="post">
+            <form action="includes/login.inc.php" id="login" method="post">
                 <div class="textfield">
-                    <input type="text" name="uid" required>
+                    <input type="text" class="form__input" id="uid" name="uid" autofocus required>
                     <span></span>
                     <label> Login</label>
+                    <div class="form__input-error-message"></div>
                 </div>
                 <div class="textfield">
-                    <input type="password" name="pwd" required>
+                    <input type="password" class="form__input" id="pwd" name="pwd" autofocus required>
                     <span></span>
                     <label> Heslo</label>
+                    <div class="form__input-error-message"></div>
                 </div>
-                <input type="submit" name="submit" value="PRIHLÁSIŤ SA">
+                <input type="submit" name="submit" id="loginbtn" value="PRIHLÁSIŤ SA">
                 <div class="signuplink">
                     Nemáš vytvorený účet? <a href="registracia.php">Zaregistruj sa!</a>
                 </div>
@@ -39,6 +41,7 @@
     <div class="footer">
         <?php include('./partials/footer.php') ?>
     </div>
+<script src="login.js"></script>
 </body>
 
 </html>
