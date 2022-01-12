@@ -16,5 +16,11 @@ if (isset($_POST["submit"]))
     $signup->loginUser();
 
     // naspat na hl. stranku
-    header("location: ../index.php?error=none");
+
+    if ($_SESSION["user"] == "user") {
+        header("location: ../index.php?error=none");
+    } elseif ($_SESSION["user"] == "admin") {
+        header("location: ../admin.php?error=none");
+    }
+
 }

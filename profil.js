@@ -35,7 +35,7 @@ const toggleButtonDel = document.querySelector('#confirmdel');
 
 toggleButtonDel.addEventListener('click', e => {
    var result = confirm('Ste si tým istý? Účet bude natrvalo odstránený!');
-   if (result == false) {
+   if (result === false) {
        e.preventDefault();
    }
 });
