@@ -70,6 +70,36 @@ body {
     justify-content: center;
 }
 
+.centercontentAdmin {
+    width: 80%;
+    padding-left: 20%;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-column-gap: 20px;
+    justify-content: center;
+}
+
+.grid-containerRows, .grid-containerRowsEqual{
+    display: grid;
+    text-align: center;
+    align-items: center;
+}
+
+.grid-containerRowsEqual{
+    grid-template-columns: auto auto auto;
+
+}
+
+.grid-containerRows {
+    grid-template-columns: 50% 25% 25%;
+    justify-content: center;
+}
+
+.grid-container {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .splitcontent {
     display: grid;
     grid-template-columns: 50% 50%;
@@ -77,11 +107,16 @@ body {
     padding-right: 25%;
 }
 
-.splitcontent button {
+.splitcontent button, .grid-containerRows button, .hiddenUpdate button, .hiddenInsert button {
     font-size: 14px;
     font-weight: bold;
     padding: 7px 25px;
     margin: 2px auto;
+}
+
+.hiddenUpdate button, .hiddenInsert button {
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .centercontent img {
@@ -168,7 +203,16 @@ form .textfield{
     background: none;
     border: none;
     outline: none;
+}
 
+.field input{
+    width: 130px;
+    height: 30px;
+    font-size: 14px;
+    color: black;
+    border-radius: 4px;
+    border: none;
+    padding-left: 5px;
 }
 
 .textfield button{}
@@ -304,7 +348,6 @@ input[type="submit"]:hover{
         width: 100%;
         padding: 0;
     }
-
 }
 
 @media screen and (max-width: 1200px) {
@@ -312,14 +355,30 @@ input[type="submit"]:hover{
         width: 90%;
         padding-left: 10%;
     }
+}
 
+@media screen and (max-width: 1100px) {
+    .grid-containerRows {
+        grid-template-columns: 100%;
+    }
 }
 
 @media screen and (max-width: 800px) {
     .centercontent {
         grid-template-columns: 100%;
     }
+}
 
+@media screen and (max-width: 800px) {
+    .grid-containerRowsEqual {
+        grid-template-columns: auto auto;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .grid-containerRowsEqual {
+        grid-template-columns: 100%;
+    }
 }
 
 /* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
@@ -379,8 +438,8 @@ p {
     flex-direction: column;
 }
 
-.flex-containerColumns h2 {
-    font-size: 18px;
+.flex-containerColumns h1 {
+    text-align: center;
 }
 
 .flex-containerColumns hr {
@@ -483,6 +542,7 @@ span {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
+    text-align: center;
 }
 
 .poziadavky td, .poziadavky th{

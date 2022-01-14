@@ -10,6 +10,13 @@ if (isset($_SESSION["user"]))  {
     echo "Nie si prihlaseny";
     exit;
 }
+
+require_once('./php/tankinfo.php');
+require_once('./classes/tanks.classes.php');
+
+$database = new Tanks();
+$data = $database->selectTanks();
+
 ?>
 
 <!DOCTYPE html>
@@ -29,28 +36,175 @@ if (isset($_SESSION["user"]))  {
 </div>
 
 <div class="row">
-    <div class="leftcolumn">
+    <div class="centercontentAdmin">
         <div class="card">
-            <div class="flex-container">
-                <div class="flex-item-left">
-                    <img src="pictures/obr.png" alt="">
-                </div>
-                <div class="flex-item-right">
-                    <div class="description">
-                        <h2>NOVINKA</h2>
-                        <h5>18.10.2021</h5>
-                    </div>
-                    <p>Admin Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna </p>
-                </div>
-            </div>
-        </div>
-    </div>
+            <form action="admin.php" method="post">
+<!--                <div class="flex-containerColumns">-->
 
-    <div class="rightcolumn">
-        <div class="card">
-            <div class="ponuky">
-                <?php include('./partials/ponuky.php') ?>
-            </div>
+                <h1>Zoznam prémiových tankov</h1>
+                <br>
+                <div style="overflow-x:auto;">
+                    <table class="poziadavky">
+                        <tr>
+                            <th>ID</th>
+                            <th>UID</th>
+                            <th>PRICE</th>
+                            <th>TIER</th>
+                            <th>TYPE</th>
+                            <th>NATIONALITY</th>
+                            <th>IMG</th>
+                        </tr>
+                        <?php
+                        $numberOfRows = $data->rowCount();
+                        $row = $data->fetchAll(PDO::FETCH_ASSOC);
+                        for ($i = 0; $i < $numberOfRows; $i++) {
+                            tankinfo($row[$i]["tank_uid"],$row[$i]["tank_price"],$row[$i]["tank_tier"],$row[$i]["tank_nationality"],$row[$i]["tank_type"],$row[$i]["tank_img"],$row[$i]["tank_id"]);
+                        }
+                        ?>
+                    </table>
+                </div>
+                <br>
+                <div class="grid-containerRows">
+                    <div class="grid-container">
+                        <h2>Úprava parametrov tanku:</h2>
+                    </div>
+                    <div class="grid-container">
+                        <div class="field">
+                            <input type="text" name="id" placeholder="Zadaj id tanku">
+                        </div>
+                    </div>
+                    <div class="grid-container">
+                        <button type="button" id="updatebtn" class="button"> ZMENIŤ</button>
+                    </div>
+                </div>
+                <br>
+                <div class="hiddenUpdate">
+                    <div style="overflow-x:auto;">
+                        <table class="poziadavky">
+                            <tr>
+                                <th>UID</th>
+                                <th>PRICE</th>
+                                <th>TIER</th>
+                                <th>TYPE</th>
+                                <th>NATIONALITY</th>
+                                <th>IMG</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="field">
+                                        <input type="text" name="id" placeholder="Zadaj id tanku">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="field">
+                                        <input type="text" name="id" placeholder="Zadaj id tanku">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="field">
+                                        <input type="text" name="id" placeholder="Zadaj id tanku">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="field">
+                                        <input type="text" name="id" placeholder="Zadaj id tanku">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="field">
+                                        <input type="text" name="id" placeholder="Zadaj id tanku">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="field">
+                                        <input type="text" name="id" placeholder="Zadaj id tanku">
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <button type="submit" name="potvrdit" class="button"> POTVRDIŤ</button>
+                </div>
+                <hr>
+                <div class="grid-containerRows">
+                    <div class="grid-container">
+                        <h2>Vymazanie tanku:</h2>
+                    </div>
+                    <div class="grid-container">
+                        <div class="field">
+                            <input type="text" name="id" placeholder="Zadaj id tanku">
+                        </div>
+                    </div>
+                    <div class="grid-container">
+                        <button type="submit" name="zmazat" class="button"> ZMAZAŤ</button>
+                    </div>
+                </div>
+                <br>
+                <hr>
+                <div class="grid-containerRows">
+                    <div class="grid-container">
+                        <h2>Pridanie tanku:</h2>
+                    </div>
+                    <div class="grid-container">
+                        <div class="field">
+                            <input type="text" name="id" placeholder="Zadaj id tanku">
+                        </div>
+                    </div>
+                    <div class="grid-container">
+                        <button type="button" class="button" id="insertbtn"> PRIDAŤ</button>
+                    </div>
+                </div>
+                <br>
+                <div class="hiddenInsert">
+                    <div style="overflow-x:auto;">
+                        <table class="poziadavky">
+                            <tr>
+                                <th>UID</th>
+                                <th>PRICE</th>
+                                <th>TIER</th>
+                                <th>TYPE</th>
+                                <th>NATIONALITY</th>
+                                <th>IMG</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="field">
+                                        <input type="text" name="id" placeholder="Zadaj id tanku">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="field">
+                                        <input type="text" name="id" placeholder="Zadaj id tanku">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="field">
+                                        <input type="text" name="id" placeholder="Zadaj id tanku">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="field">
+                                        <input type="text" name="id" placeholder="Zadaj id tanku">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="field">
+                                        <input type="text" name="id" placeholder="Zadaj id tanku">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="field">
+                                        <input type="text" name="id" placeholder="Zadaj id tanku">
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <button type="submit" name="potvrdit" class="button"> POTVRDIŤ</button>
+                </div>
+                <hr>
+
+            </form>
         </div>
     </div>
 </div>
@@ -58,5 +212,7 @@ if (isset($_SESSION["user"]))  {
 <div class="footer">
     <?php include('./partials/footer.php') ?>
 </div>
+
+<script src="admin.js"></script>
 </body>
 </html>
