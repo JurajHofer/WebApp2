@@ -61,6 +61,33 @@ body {
     padding-left: 10%;
 }
 
+.centercontent {
+    width: 80%;
+    padding-left: 20%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-column-gap: 20px;
+    justify-content: center;
+}
+
+.splitcontent {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+.splitcontent button {
+    font-size: 14px;
+    font-weight: bold;
+    padding: 7px 25px;
+}
+
+.centercontent img {
+    width: 100%;
+    height: auto;
+}
+
 .centercolumn {
     display: flex;
     justify-content: center;
@@ -154,29 +181,29 @@ input:-webkit-autofill:active {
 }
 
 .textfield label{
-    position: absolute;
-    top: 50%;
-    left: 5px;
-    transform: translateY(-50%);
+    /*position: absolute;*/
+    /*top: 50%;*/
+    /*left: 5px;*/
+    /*transform: translateY(-50%);*/
     font-size: 16px;
-    color: #333333;
-    pointer-events: none;
+    color: black;
+    /*pointer-events: none;*/
 }
 
 .textfield span::before{
-    content: '';
-    position: absolute;
-    top: 50px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: orange;
-    transition: .5s;
+    /*content: '';*/
+    /*position: absolute;*/
+    /*top: 50px;*/
+    /*left: 0;*/
+    /*width: 0;*/
+    /*height: 2px;*/
+    /*background: orange;*/
+    /*transition: .5s;*/
 }
 
-.textfield input:focus ~ label,
-.textfield input:valid ~ label{
-    top: 1px;
+.textfield input:focus ~ input,
+.textfield input:valid ~ input{
+    /*top: 1px;*/
     color: orange;
 }
 
@@ -322,6 +349,23 @@ p {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+}
+
+.flex-containerColumns{
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    flex-direction: column;
+}
+
+.centerflex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.centerflex h2 {
+    font-size: 16px;
 }
 
 .flex-item-left {

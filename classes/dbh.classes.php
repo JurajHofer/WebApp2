@@ -11,7 +11,5 @@ class Dbh {
             print "Error!: " . $e->getMessage() . "<br/>";
             die();
         }
-
     }
-
 }

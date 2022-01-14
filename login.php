@@ -19,15 +19,13 @@
             <h3> PRIHLÁSENIE</h3>
             <form action="includes/login.inc.php" id="login" method="post">
                 <div class="textfield">
-                    <input type="text" class="form__input" id="uid" name="uid" autofocus required>
-                    <span></span>
                     <label> Login</label>
+                    <input type="text" class="form__input" id="uid" name="uid" placeholder="Zadaj meno" autofocus required>
                     <div class="form__input-error-message"></div>
                 </div>
                 <div class="textfield">
-                    <input type="password" class="form__input" id="pwd" name="pwd" autofocus required>
-                    <span></span>
                     <label> Heslo</label>
+                    <input type="password" class="form__input" id="pwd" name="pwd" autofocus required>
                     <div class="form__input-error-message"></div>
                 </div>
                 <input type="submit" name="submit" id="loginbtn" value="PRIHLÁSIŤ SA">
