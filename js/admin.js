@@ -17,15 +17,20 @@ toggleButtonInsert.addEventListener('click', () => {
 /*odkrytie upravy parametrov tanku*/
 const toggleButtonUpdate = document.querySelector('#updatebtn');
 const divListUpdate = document.querySelector('.hiddenUpdate');
+let idtankupdate = document.getElementById('tankidupdate');
 
 divListUpdate.style.display = 'none';
 
 toggleButtonUpdate.addEventListener('click', () => {
-    if (divListUpdate.style.display === 'none') {
-        divListUpdate.style.display = 'block';
-        toggleButtonUpdate.innerHTML = 'ZRUŠIŤ';
+    if (idtankupdate.value === '') {
+        alert('Nezadal si ID tanku!');
     } else {
-        divListUpdate.style.display = 'none';
-        toggleButtonUpdate.innerHTML = 'ZMENIŤ';
+        if (divListUpdate.style.display === 'none') {
+            divListUpdate.style.display = 'block';
+            toggleButtonUpdate.innerHTML = 'ZRUŠIŤ';
+        } else {
+            divListUpdate.style.display = 'none';
+            toggleButtonUpdate.innerHTML = 'ZMENIŤ';
+        }
     }
 });

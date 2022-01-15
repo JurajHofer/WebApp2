@@ -11,12 +11,11 @@ if (isset($_SESSION["user"]))  {
     exit;
 }
 
-require_once('./php/tankinfo.php');
+require_once('./php/functions.php');
 require_once('./classes/tanks.classes.php');
 
 $database = new Tanks();
 $data = $database->selectTanks();
-
 ?>
 
 <!DOCTYPE html>
@@ -71,7 +70,7 @@ $data = $database->selectTanks();
                     </div>
                     <div class="grid-container">
                         <div class="field">
-                            <input type="number" name="iduprava" placeholder="Zadaj ID tanku" min="1" max="500">
+                            <input type="number" name="iduprava" id="tankidupdate" placeholder="Zadaj ID tanku" min="1" max="500">
                         </div>
                     </div>
                     <div class="grid-container">
@@ -93,7 +92,7 @@ $data = $database->selectTanks();
                             <tr>
                                 <td>
                                     <div class="field">
-                                        <input type="text" name="uid2" >
+                                        <input type="text" name="uid2" value="<?php echo $row[0]["tank_uid"] ?>">
                                     </div>
                                 </td>
                                 <td>
@@ -266,6 +265,6 @@ $data = $database->selectTanks();
     <?php include('./partials/footer.php') ?>
 </div>
 
-<script src="admin.js"></script>
+<script src="js/admin.js"></script>
 </body>
 </html>

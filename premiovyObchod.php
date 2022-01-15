@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    require_once('./php/component.php');
+    require_once('./php/functions.php');
     require_once('./classes/tanks.classes.php');
 
     $database = new Tanks();

@@ -1,7 +1,34 @@
 <?php
 
 class Login extends Dbh {
-    protected function getUser($uid, $pwd) {
+    private $uid;
+    private $pwd;
+
+    public function __construct($uid, $pwd) {
+        $this->uid = $uid;
+        $this->pwd = $pwd;
+    }
+
+    public function loginUser() {
+        if ($this->emptyInput() == false) {
+            header("location: ../index.php?error=emptyinput");
+            exit();
+        }
+
+        $this->getUser($this->uid, $this->pwd);
+    }
+
+    private function emptyInput() {
+        $result = null;
+        if (empty($this->uid) || empty($this->pwd)) {
+            $result = false;
+        } else {
+            $result = true;
+        }
+        return $result;
+    }
+
+    private function getUser($uid, $pwd) {
         $stmt = $this->connect()->prepare('SELECT users_pwd FROM users WHERE users_uid = ? OR users_email = ?;');
 
         if (!$stmt->execute(array($uid, $pwd))) {
@@ -50,5 +77,5 @@ class Login extends Dbh {
 
         $stmt = null;
     }
-
 }
+

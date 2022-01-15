@@ -41,7 +41,7 @@
                     <label> Email</label>
                 </div>
 
-                <input type="submit" name="submit" value="ZMENIŤ">
+                <input type="submit" name="zmenitudaje" value="ZMENIŤ">
             </div>
             <hr>
         </form>
@@ -50,7 +50,7 @@
             Zmena hesla
         </div>
 
-        <form action="includes/password.inc.php" method="post">
+        <form action="includes/profile.inc.php" method="post">
             <button class="zmenit" type="button" id="pwdbtn">ZMENIŤ</button>
             <div class="hiddenpwd">
                 <div class="textfield">
@@ -63,7 +63,7 @@
                     <span></span>
                     <label> Potvrď Heslo</label>
                 </div>
-                <input type="submit" name="submit" value="ZMENIŤ">
+                <input type="submit" name="zmenitheslo" value="ZMENIŤ">
             </div>
             <hr>
         </form>
@@ -71,8 +71,8 @@
         <div class="udaje2">
             Odstránenie účtu
         </div>
-        <form action="includes/deluser.inc.php" method="post">
-            <button class="zmenit" type="submit" name="submit" id="confirmdel">ODSTRÁNIŤ</button>
+        <form action="includes/profile.inc.php" method="post">
+            <button class="zmenit" type="submit" name="zmazatucet" id="confirmdel">ODSTRÁNIŤ</button>
         </form>
     </div>
 </div>
@@ -80,7 +80,7 @@
 <div class="footer">
     <?php include('./partials/footer.php') ?>
 </div>
-<script src="profil.js"></script>
-<script src="login.js"></script>
+<script src="js/profil.js"></script>
+<script src="js/login.js"></script>
 </body>
 </html>

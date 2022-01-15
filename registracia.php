@@ -17,7 +17,7 @@
 <div class="windowreg">
     <div class="center">
         <h3> REGISTRÁCIA</h3>
-        <form action="includes/signup.inc.php" method="post">
+        <form action="includes/login.inc.php" method="post">
             <div class="textfield">
                 <input type="text" name="uid" required>
                 <span></span>
@@ -38,7 +38,7 @@
                 <span></span>
                 <label> Email</label>
             </div>
-            <input type="submit" name="submit" value="REGISTROVAŤ SA">
+            <input type="submit" name="zaregistrovat" value="REGISTROVAŤ SA">
         </form>
     </div>
 </div>

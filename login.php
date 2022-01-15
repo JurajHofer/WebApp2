@@ -28,7 +28,7 @@
                     <input type="password" class="form__input" id="pwd" name="pwd" autofocus required>
                     <div class="form__input-error-message"></div>
                 </div>
-                <input type="submit" name="submit" id="loginbtn" value="PRIHLÁSIŤ SA">
+                <input type="submit" name="prihlasit" id="loginbtn" value="PRIHLÁSIŤ SA">
                 <div class="signuplink">
                     Nemáš vytvorený účet? <a href="registracia.php">Zaregistruj sa!</a>
                 </div>
@@ -39,7 +39,7 @@
     <div class="footer">
         <?php include('./partials/footer.php') ?>
     </div>
-<script src="login.js"></script>
+<script src="js/login.js"></script>
 </body>
 
 </html>

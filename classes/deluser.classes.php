@@ -1,7 +1,33 @@
 <?php
 
+
 class Deluser extends Dbh {
-    protected function delUser($uid) {
+    private $uid;
+
+    public function __construct($uid) {
+        $this->uid = $uid;
+    }
+
+    public function deleteUser() {
+        if ($this->emptyInput() == false) {
+            header("location: ../index.php?error=emptyinput");
+            exit();
+        }
+
+        $this->delUser($this->uid);
+    }
+
+    private function emptyInput() {
+        $result = null;
+        if (empty($this->uid)) {
+            $result = false;
+        } else {
+            $result = true;
+        }
+        return $result;
+    }
+
+    private function delUser($uid) {
         $stmt = $this->connect()->prepare('DELETE FROM users WHERE users_uid = ?;');
 
         if (!$stmt->execute(array($uid))) {
@@ -21,5 +47,6 @@ class Deluser extends Dbh {
 
         $stmt = null;
     }
-
 }
+
+

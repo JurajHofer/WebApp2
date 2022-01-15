@@ -8,7 +8,7 @@ function component($tank_uid, $tank_price, $tank_tier, $tank_nationality, $tank_
         <form action="premiovyObchod.php" method="post">
             <div class="flex-containerColumns">
                 <div>
-                    <img src="$tank_img" alt="">
+                    <img src="pictures_shop/$tank_img" alt="">
                 </div>
                 <div>
                     <h2> Tier $tank_tier $tank_nationality $tank_type $tank_uid </h2>
@@ -32,6 +32,23 @@ function component($tank_uid, $tank_price, $tank_tier, $tank_nationality, $tank_
         </form>
     </div>
     
+    END;
+    echo $element;
+}
+
+function tankinfo($tank_uid, $tank_price, $tank_tier, $tank_nationality, $tank_type, $tank_img, $tank_id) {
+    $element = <<<END
+
+        <tr>
+            <td>$tank_id</td>
+            <td>$tank_uid</td>
+            <td>$tank_price</td>
+            <td>$tank_tier</td>
+            <td>$tank_type</td>
+            <td>$tank_nationality</td>
+            <td>$tank_img</td>
+        </tr>
+
     END;
     echo $element;
 }
