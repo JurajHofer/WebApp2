@@ -442,6 +442,10 @@ p {
     text-align: center;
 }
 
+.flex-containerColumns h2 {
+    font-size: 20px;
+}
+
 .flex-containerColumns hr {
     margin-top: 5px;
 }
