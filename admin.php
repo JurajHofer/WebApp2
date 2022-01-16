@@ -14,12 +14,16 @@ if (isset($_SESSION["user"]))  {
 require_once('./php/functions.php');
 require_once('./classes/tankselect.classes.php');
 require_once('./classes/themeselect.classes.php');
+require_once('./classes/contactselect.classes.php');
 
 $databaseTanks = new Tanks();
 $dataTanks = $databaseTanks->selectTanks();
 
 $databaseThemes = new Themes();
 $dataThemes = $databaseThemes->selectThemes();
+
+$databaseContacts = new Contacts();
+$dataContacts= $databaseContacts->selectContacts();
 ?>
 
 <!DOCTYPE html>
@@ -326,6 +330,26 @@ $dataThemes = $databaseThemes->selectThemes();
                         </div>
                     </div>
                 </form>
+                <h1>Správy od užívateľov</h1>
+                <br>
+                <div style="overflow-x:auto;">
+                    <table class="poziadavky">
+                        <tr>
+                            <th>ID</th>
+                            <th>CATEGORY</th>
+                            <th>MESSAGE</th>
+                            <th>USER_ID</th>
+                        </tr>
+                        <?php
+                        $numberOfRows = $dataContacts->rowCount();
+                        $row = $dataContacts->fetchAll(PDO::FETCH_ASSOC);
+                        for ($i = 0; $i < $numberOfRows; $i++) {
+                            contactinfo($row[$i]["contact_id"],$row[$i]["contact_category"],$row[$i]["message"],$row[$i]["users_id"]);
+                        }
+                        ?>
+                    </table>
+                </div>
+
             </div>
         </div>
     </div>

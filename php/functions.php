@@ -74,3 +74,17 @@ function themeinfo2($theme_text, $theme_question) {
     END;
     echo $element;
 }
+
+function contactinfo($contact_id, $contact_category, $message, $users_id) {
+    $element = <<<END
+
+        <tr>
+            <td>$contact_id</td>
+            <td>$contact_category</td>
+            <td>$message</td>
+            <td>$users_id</td>
+        </tr>
+
+    END;
+    echo $element;
+}
