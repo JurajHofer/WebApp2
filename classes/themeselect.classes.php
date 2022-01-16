@@ -22,9 +22,9 @@ class Themes extends Dbh {
     }
 
     public function selectThemesCategory($category) {
-        $stmt = $this->connect()->prepare('SELECT * FROM actual_themes WHERE theme_category = ?');
+        $stmt = $this->connect()->prepare('SELECT * FROM actual_themes WHERE theme_category = :cat');
 
-        if (!$stmt->execute(array($category))) {
+        if (!$stmt->execute(array((':cat')=>$category))) {
             $stmt = null;
             header("location: /admin.php?error=stmtfailed1");
             exit();

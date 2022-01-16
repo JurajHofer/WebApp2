@@ -40,9 +40,9 @@ class TankInsert extends Dbh {
     }
 
     private function insTank($uid, $price,$tier,$type,$nationality,$img) {
-        $stmt = $this->connect()->prepare('INSERT INTO tanks (tank_uid, tank_price, tank_tier, tank_type, tank_nationality, tank_img) VALUES (?,?,?,?,?,?);');
+        $stmt = $this->connect()->prepare('INSERT INTO tanks (tank_uid, tank_price, tank_tier, tank_type, tank_nationality, tank_img) VALUES (:uid,:price,:tier,:typ,:nationality,:img);');
 
-        if (!$stmt->execute(array($uid, $price,$tier,$type,$nationality,$img))) {
+        if (!$stmt->execute(array((':uid')=>$uid, (':price')=>$price,(':tier')=>$tier,(':typ')=>$type,(':nationality')=>$nationality,(':img')=>$img))) {
             $stmt = null;
             header("location: ../admin.php?error=stmtfailed1");
             exit();

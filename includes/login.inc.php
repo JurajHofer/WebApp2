@@ -40,5 +40,5 @@ if (isset($_POST["zaregistrovat"]))
     $signup->signupUser();
 
     // naspat na hl. stranku
-    header("location: ../index.php?error=none");
+    header("location: ../login.php?error=none");
 }

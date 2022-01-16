@@ -34,9 +34,9 @@ class ThemeInsert extends Dbh {
     }
 
     private function insTheme($text, $question, $category) {
-        $stmt = $this->connect()->prepare('INSERT INTO actual_themes (theme_text, theme_question, theme_category) VALUES (?,?,?);');
+        $stmt = $this->connect()->prepare('INSERT INTO actual_themes (theme_text, theme_question, theme_category) VALUES (:text,:que,:cat);');
 
-        if (!$stmt->execute(array($text, $question,$category))) {
+        if (!$stmt->execute(array((':text')=>$text, (':que')=>$question,(':cat')=>$category))) {
             $stmt = null;
             header("location: ../admin.php?error=stmtfailed1");
             exit();

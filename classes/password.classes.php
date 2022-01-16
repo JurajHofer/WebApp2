@@ -59,11 +59,11 @@ class Password extends Dbh {
     }
 
     private function updUser($id, $pwd) {
-        $stmt = $this->connect()->prepare('UPDATE users SET users_pwd = ? WHERE users_id = ?;');
+        $stmt = $this->connect()->prepare('UPDATE users SET users_pwd = :pwd WHERE users_id = :id;');
 
         $hashedPwd =password_hash($pwd, PASSWORD_DEFAULT);
 
-        if (!$stmt->execute(array($hashedPwd, $id))) {
+        if (!$stmt->execute(array((':pwd')=>$hashedPwd, (':id')=>$id))) {
             $stmt = null;
             header("location: ../index.php?error=stmtfailed1");
             exit();

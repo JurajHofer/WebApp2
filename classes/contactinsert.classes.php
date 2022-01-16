@@ -34,9 +34,9 @@ class ContactInsert extends Dbh {
     }
 
     private function insContact($category, $text,$user) {
-        $stmt = $this->connect()->prepare('INSERT INTO contacts (contact_category, message, users_id) VALUES (?,?,?);');
+        $stmt = $this->connect()->prepare('INSERT INTO contacts (contact_category, message, users_id) VALUES (:cat,:text,:user);');
 
-        if (!$stmt->execute(array($category, $text,$user))) {
+        if (!$stmt->execute(array((':cat')=>$category, (':text')=>$text,(':user')=>$user))) {
             $stmt = null;
             header("location: ../podpora.php?error=stmtfailed1");
             exit();

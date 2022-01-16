@@ -1,4 +1,13 @@
+<?php
+session_start();
 
+require_once('./php/functions.php');
+require_once('./classes/tankselect.classes.php');
+
+$databaseTanks = new Tanks();
+$dataTanks = $databaseTanks->selectUserTanks();
+$numberOfRows = $dataTanks->rowCount();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,10 +29,10 @@
     <div class="center">
         <h3> Správa Účtu</h3>
         <div class="udaje">
-            Názov účtu :
+            <b>Názov účtu :</b>
             <?php echo $_SESSION["useruid"] ?>
             <br>
-            Email :
+            <b>Email :</b>
             <?php echo $_SESSION["useremail"] ?>
         </div>
 
@@ -47,7 +56,7 @@
         </form>
 
         <div class="udaje2">
-            Zmena hesla
+            <b>Zmena hesla</b>
         </div>
 
         <form action="includes/profile.inc.php" method="post">
@@ -69,11 +78,25 @@
         </form>
 
         <div class="udaje2">
-            Odstránenie účtu
+            <b>Odstránenie účtu</b>
         </div>
         <form action="includes/profile.inc.php" method="post">
             <button class="zmenit" type="submit" name="zmazatucet" id="confirmdel">ODSTRÁNIŤ</button>
+            <hr>
         </form>
+        <div class="udaje2">
+            <p><b>Počet goldov:</b> <?php echo $_SESSION["usergolds"]?></p>
+            <p><b>Počet vlastnených tankov: </b><?php echo $numberOfRows ?></p>
+            <ul class="d">
+                <?php
+                    $row = $dataTanks->fetchAll(PDO::FETCH_ASSOC);
+                    for ($i = 0; $i < $numberOfRows; $i++) {
+                        tankname($row[$i]["tank_uid"],$row[$i]["tank_tier"],$row[$i]["tank_type"]);
+                    }
+                ?>
+            </ul>
+        </div>
+
     </div>
 </div>
 

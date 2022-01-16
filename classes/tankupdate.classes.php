@@ -47,9 +47,9 @@ class TankUpdate extends Dbh {
     }
 
     private function updTank($id,$uid, $price,$tier,$type,$nationality,$img) {
-        $stmt = $this->connect()->prepare('UPDATE tanks SET tank_uid = ?, tank_price = ?, tank_tier = ?, tank_type = ?, tank_nationality = ?, tank_img = ? WHERE tank_id = ?;');
+        $stmt = $this->connect()->prepare('UPDATE tanks SET tank_uid = :uid, tank_price = :price, tank_tier = :tier, tank_type = :typ, tank_nationality = :nationality, tank_img = :img WHERE tank_id = :id;');
 
-        if (!$stmt->execute(array($uid, $price,$tier,$type,$nationality,$img,$id))) {
+        if (!$stmt->execute(array((':uid')=>$uid, (':price')=>$price,(':tier')=>$tier,(':typ')=>$type,(':nationality')=>$nationality,(':img')=>$img,(':id')=>$id))) {
             $stmt = null;
             header("location: ../admin.php?error=stmtfailed1");
             exit();
@@ -65,9 +65,9 @@ class TankUpdate extends Dbh {
     }
 
     protected function checkTank($id) {
-        $stmt = $this->connect()->prepare('SELECT tank_uid FROM tanks WHERE tank_id = ?;');
+        $stmt = $this->connect()->prepare('SELECT tank_uid FROM tanks WHERE tank_id = ;id;');
 
-        if (!$stmt->execute(array($id))) {
+        if (!$stmt->execute(array((':id')=>$id))) {
             $stmt = null;
             header("location: ../admin.php?error=stmtfailed2");
             exit();

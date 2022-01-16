@@ -53,6 +53,15 @@ function tankinfo($tank_uid, $tank_price, $tank_tier, $tank_nationality, $tank_t
     echo $element;
 }
 
+function tankname($tank_uid, $tank_tier, $tank_type) {
+    $element = <<<END
+    
+    <li><p>$tank_tier $tank_type $tank_uid</p></li>
+
+    END;
+    echo $element;
+}
+
 function themeinfo($theme_text, $theme_question, $theme_category, $theme_id) {
     $element = <<<END
 

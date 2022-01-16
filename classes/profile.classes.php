@@ -91,9 +91,9 @@ class Profile extends Dbh {
     }
 
     private function updateUser($uid, $id, $email) {
-        $stmt = $this->connect()->prepare('UPDATE users SET users_uid = ?, users_email = ? WHERE users_id = ?;');
+        $stmt = $this->connect()->prepare('UPDATE users SET users_uid = :uid, users_email = :email WHERE users_id = :id;');
 
-        if (!$stmt->execute(array($uid, $email, $id))) {
+        if (!$stmt->execute(array((':uid')=>$uid, (':email')=>$email, (':id')=>$id))) {
             $stmt = null;
             header("location: ../index.php?error=stmtfailed1");
             exit();
@@ -112,9 +112,9 @@ class Profile extends Dbh {
     }
 
     private function checkUser($uid, $email, $uidcurr, $emailcurr) {
-        $stmt = $this->connect()->prepare('SELECT users_uid FROM users WHERE users_uid = ? OR users_email = ?;');
+        $stmt = $this->connect()->prepare('SELECT users_uid FROM users WHERE users_uid = :uid OR users_email = :email;');
 
-        if (!$stmt->execute(array($uid, $email))) {
+        if (!$stmt->execute(array((':uid')=>$uid, (':email')=>$email))) {
             $stmt = null;
             header("location: ../index.php?error=stmtfailed2");
             exit();

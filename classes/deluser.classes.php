@@ -28,9 +28,9 @@ class Deluser extends Dbh {
     }
 
     private function delUser($uid) {
-        $stmt = $this->connect()->prepare('DELETE FROM users WHERE users_uid = ?;');
+        $stmt = $this->connect()->prepare('DELETE FROM users WHERE users_uid = :uid;');
 
-        if (!$stmt->execute(array($uid))) {
+        if (!$stmt->execute(array((':uid')=>$uid))) {
             $stmt = null;
             header("location: ../index.php?error=stmtfailed1");
             exit();

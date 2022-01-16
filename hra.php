@@ -1,3 +1,26 @@
+<?php
+session_start();
+
+require_once('./classes/tankselect.classes.php');
+
+$databaseTanks = new Tanks();
+$dataTanks = $databaseTanks->selectTanks();
+$numberOfRows = $dataTanks->rowCount();
+$dataTanksType = $databaseTanks->selectTanksType("VIII");
+$numberOfRowsType8 = $dataTanksType->rowCount();
+$dataTanksType = $databaseTanks->selectTanksType("VII");
+$numberOfRowsType7 = $dataTanksType->rowCount();
+$dataTanksType = $databaseTanks->selectTanksType("VI");
+$numberOfRowsType6 = $dataTanksType->rowCount();
+$dataTanksType = $databaseTanks->selectTanksType("V");
+$numberOfRowsType5 = $dataTanksType->rowCount();
+$dataTanksType = $databaseTanks->selectTanksType("IV");
+$numberOfRowsType4 = $dataTanksType->rowCount();
+$dataTanksType = $databaseTanks->selectTanksType("III");
+$numberOfRowsType3 = $dataTanksType->rowCount();
+$dataTanksType = $databaseTanks->selectTanksType("II");
+$numberOfRowsType2 = $dataTanksType->rowCount();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -76,6 +99,20 @@
             <br>
             <h3>Hra s históriou</h3>
             <p>Svet Tankov vám dáva velenie nad viac ako 600 bojovými strojmi z polovice 20. storočia, takže môžete vyskúšať svoju guráž proti hráčom z celého sveta s vrcholnými vojnovými strojmi tejto éry. Veľte legendárnym tankom Sherman, Churchill, Tiger a T-34 - ktoré za sebou majú bohatú históriu na bojovom poli - aj vozidlám, ktoré sa chválila úžasnými technickými riešeniami, ale nikdy sa nedostala na výrobnú linku. Ovládnite vo World of Tanks, umenie obrneného boja na desiatkach máp, ktoré oživujú historické lokácie z celej Zeme a zaisťujú rozmanité taktické hranie. Hra má celosvetovo už vyše 160 miliónov oddaných fanúšikov. Vyrazte s nami do boja!</p>
+            <br>
+            <hr>
+            <h3>Skvelé ponuky tankov v prémiovom obchode</h3>
+            <p>Môžeš vlastniť tank, ktorý len chceš, stačí si ho kúpiť v prémiovom obchode za výhodné ceny. Na výber je z veľkého počtu tankov rôznych národností, typov a úrovní. nemusíte tak vyskúmavať tanky z línií v hre, čo niekedy trvá celú večnosť, ale môžete si ich zaobstarať ihneď. Momentálne je dostupných <?php echo $numberOfRows ?> tankov:</p>
+            <ul class="c">
+                <li><p>Počet tankov na tieru II: <?php echo $numberOfRowsType2 ?></p></li>
+                <li><p>Počet tankov na tieru III: <?php echo $numberOfRowsType3 ?></p></li>
+                <li><p>Počet tankov na tieru IV: <?php echo $numberOfRowsType4 ?></p></li>
+                <li><p>Počet tankov na tieru V: <?php echo $numberOfRowsType5 ?></p></li>
+                <li><p>Počet tankov na tieru VI: <?php echo $numberOfRowsType6 ?></p></li>
+                <li><p>Počet tankov na tieru VII: <?php echo $numberOfRowsType7 ?></p></li>
+                <li><p>Počet tankov na tieru VIII: <?php echo $numberOfRowsType8 ?></p></li>
+            </ul>
+            <p>Každý z nich je unikátny a zaujímavý, preto neváhaj si niektorý zaobstarať.</p>
             <br>
             <hr>
             <h3>Screenshoty</h3>

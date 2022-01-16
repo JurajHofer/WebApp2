@@ -15,31 +15,31 @@ class Signup extends Dbh {
 
     public function signupUser() {
         if ($this->emptyInput() == false) {
-            header("location: ../index.php?error=emptyinput");
+            header("location: ../registracia.php?error=emptyinput");
             exit();
         }
         if ($this->invalidUid() == false) {
-            header("location: ../index.php?error=username");
+            header("location: ../registracia.php?error=username");
             exit();
         }
         if ($this->invalidEmail() == false) {
-            header("location: ../index.php?error=email");
+            header("location: ../registracia.php?error=email");
             exit();
         }
         if ($this->pwdMatch() == false) {
-            header("location: ../index.php?error=passwordmatch");
+            header("location: ../registracia.php?error=passwordmatch");
             exit();
         }
         if ($this->uidTakenCheck() == false) {
-            header("location: ../index.php?error=useroremailtaken");
+            header("location: ../registracia.php?error=useroremailtaken");
             exit();
         }
         if ($this->pwdLength() == false) {
-            header("location: ../index.php?error=passwordlength");
+            header("location: ../registracia.php?error=passwordlength");
             exit();
         }
         if ($this->uidLength() == false) {
-            header("location: ../index.php?error=uidlength");
+            header("location: ../registracia.php?error=uidlength");
             exit();
         }
 
@@ -117,13 +117,13 @@ class Signup extends Dbh {
     }
 
     private function setUser($uid, $pwd, $email) {
-        $stmt = $this->connect()->prepare('INSERT INTO users (users_uid, users_pwd, users_email, user, users_golds) VALUES (?,?,?,?,?);');
+        $stmt = $this->connect()->prepare('INSERT INTO users (users_uid, users_pwd, users_email, user, users_golds) VALUES (:uid,:pwd,:email,:usr,:golds);');
 
         $hashedPwd =password_hash($pwd, PASSWORD_DEFAULT);
 
-        if (!$stmt->execute(array($uid, $hashedPwd, $email, "user", 50000))) {
+        if (!$stmt->execute(array((':uid')=>$uid, (':pwd')=>$hashedPwd, (':email')=>$email, (':usr')=>"user", (':golds')=>50000))) {
             $stmt = null;
-            header("location: ../index.php?error=stmtfailed1");
+            header("location: ../registracia.php?error=stmtfailed1");
             exit();
         }
 
@@ -131,11 +131,11 @@ class Signup extends Dbh {
     }
 
     private function checkUser($uid, $email) {
-        $stmt = $this->connect()->prepare('SELECT users_uid FROM users WHERE users_uid = ? OR users_email = ?;');
+        $stmt = $this->connect()->prepare('SELECT users_uid FROM users WHERE users_uid = :uid OR users_email = :email;');
 
-        if (!$stmt->execute(array($uid, $email))) {
+        if (!$stmt->execute(array((':uid')=>$uid, (':email')=>$email))) {
             $stmt = null;
-            header("location: ../index.php?error=stmtfailed2");
+            header("location: ../registracia.php?error=stmtfailed2");
             exit();
         }
 

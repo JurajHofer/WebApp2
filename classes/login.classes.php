@@ -11,7 +11,7 @@ class Login extends Dbh {
 
     public function loginUser() {
         if ($this->emptyInput() == false) {
-            header("location: ../index.php?error=emptyinput");
+            header("location: ../login.php?error=emptyinput");
             exit();
         }
 
@@ -29,17 +29,17 @@ class Login extends Dbh {
     }
 
     private function getUser($uid, $pwd) {
-        $stmt = $this->connect()->prepare('SELECT users_pwd FROM users WHERE users_uid = :user OR users_email = :email;');
+        $stmt = $this->connect()->prepare('SELECT users_pwd FROM users WHERE users_uid = :uid OR users_email = :email;');
 
-        if (!$stmt->execute(array(':user' => $uid,':email'=> $pwd))) {
+        if (!$stmt->execute(array((':uid')=> $uid,(':email')=>$uid))) {
             $stmt = null;
-            header("location: ../index.php?error=stmtfailed1");
+            header("location: ../login.php?error=stmtfailed1");
             exit();
         }
 
         if ($stmt->rowCount() == 0) {
             $stmt = null;
-            header("location: ../index.php?error=usernotfound");
+            header("location: ../login.php?error=usernotfound1");
             exit();
         }
 
@@ -48,20 +48,20 @@ class Login extends Dbh {
 
         if ($checkPwd == false) {
             $stmt = null;
-            header("location: ../index.php?error=wrongpassword");
+            header("location: ../login.php?error=wrongpassword");
             exit();
         } else {
-            $stmt = $this->connect()->prepare('SELECT * FROM users WHERE users_uid = ? OR users_email = ? AND users_pwd = ?;');
+            $stmt = $this->connect()->prepare('SELECT * FROM users WHERE (users_uid = :uid OR users_email = :email) AND users_pwd = :pwd;');
 
-            if (!$stmt->execute(array($uid, $uid, $pwd))) {
+            if (!$stmt->execute(array((':uid')=>$uid, (':email')=>$uid, (':pwd')=>$pwdHashed[0]["users_pwd"]))) {
                 $stmt = null;
-                header("location: ../index.php?error=stmtfailed1");
+                header("location: ../login.php?error=stmtfailed1");
                 exit();
             }
 
             if ($stmt->rowCount() == 0) {
                 $stmt = null;
-                header("location: ../index.php?error=usernotfound");
+                header("location: ../login.php?error=usernotfound2");
                 exit();
             }
 

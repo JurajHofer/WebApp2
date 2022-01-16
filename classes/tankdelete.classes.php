@@ -30,9 +30,9 @@ class TankDelete extends Dbh {
     }
 
     private function delTank($id) {
-        $stmt = $this->connect()->prepare('DELETE FROM tanks WHERE tank_id = ?;');
+        $stmt = $this->connect()->prepare('DELETE FROM tanks WHERE tank_id = :id;');
 
-        if (!$stmt->execute(array($id))) {
+        if (!$stmt->execute(array((':id')=>$id))) {
             $stmt = null;
             header("location: ../admin.php?error=stmtfailed1");
             exit();

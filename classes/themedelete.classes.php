@@ -30,9 +30,9 @@ class ThemeDelete extends Dbh {
     }
 
     private function delTheme($id) {
-        $stmt = $this->connect()->prepare('DELETE FROM actual_themes WHERE theme_id = ?;');
+        $stmt = $this->connect()->prepare('DELETE FROM actual_themes WHERE theme_id = :id;');
 
-        if (!$stmt->execute(array($id))) {
+        if (!$stmt->execute(array((':id')=>$id))) {
             $stmt = null;
             header("location: ../admin.php?error=stmtfailed1");
             exit();

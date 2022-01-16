@@ -239,6 +239,10 @@ form .textfield{
     font-size: 20px;
 }
 
+.udaje2 p {
+    font-size: 20px;
+}
+
 .hiddeninfo, .hiddenpwd{
     padding-bottom: 10px;
 }
@@ -580,11 +584,21 @@ a {
     padding-top: 10px;
 }
 
-ul.a, ul.b {
+ul.a, ul.b, ul.c, ul.d {
     list-style-type: square;
     list-style-position: outside;
     padding-left: 20px;
     text-align: left;
+}
+
+ul.c {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 20px;
+}
+
+ul.d {
+    padding-top: 10px;
 }
 
 span {
