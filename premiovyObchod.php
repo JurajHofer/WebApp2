@@ -2,7 +2,7 @@
     session_start();
 
     require_once('./php/functions.php');
-    require_once('./classes/tanks.classes.php');
+    require_once('./classes/tankselect.classes.php');
 
     $database = new Tanks();
     $data = $database->selectTanks();

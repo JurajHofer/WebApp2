@@ -25,7 +25,7 @@ if (isset($_POST["potvrditpridanie"]))
 if (isset($_POST["zmazat"]))
 {
     //zoberie data
-    $id = $_POST["idvymazanie"];
+    $id = $_POST["tankiddelete"];
 
     // inicializuje
     include "../classes/dbh.classes.php";
@@ -62,3 +62,38 @@ if (isset($_POST["potvrditupravu"]))
     header("location: ../admin.php?error=none");
 }
 
+if (isset($_POST["potvrditpridanietemy"]))
+{
+    //zoberie data
+    $text = $_POST["themeanswer"];
+    $question = $_POST["themequestion"];
+    $category = $_POST["themecategory"];
+
+    // inicializuje
+    include "../classes/dbh.classes.php";
+    include "../classes/themeinsert.classes.php";
+    $theme = new ThemeInsert($text, $question,$category);
+
+    // errory
+    $theme->insertTheme();
+
+    // naspat na hl. stranku
+    header("location: ../admin.php?error=none");
+}
+
+if (isset($_POST["potvrditzmazanietemy"]))
+{
+    //zoberie data
+    $id = $_POST["themeiddelete"];
+
+    // inicializuje
+    include "../classes/dbh.classes.php";
+    include "../classes/themedelete.classes.php";
+    $theme = new ThemeDelete($id);
+
+    // errory
+    $theme->deleteTheme();
+
+    // naspat na hl. stranku
+    header("location: ../admin.php?error=none");
+}

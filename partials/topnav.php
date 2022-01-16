@@ -6,7 +6,7 @@ if (session_status() === PHP_SESSION_NONE)
 <a href="hra.php">HRA</a>
 <a href="aktualizacie.php">AKTUALIZÁCIE</a>
 <a href="premiovyObchod.php">PRÉMIOVÝ OBCHOD</a>
-<a href="#">PODPORA PRE HRÁČOV</a>
+<a href="podpora.php">PODPORA PRE HRÁČOV</a>
 <?php
     if (isset($_SESSION["userid"])) {
 ?>

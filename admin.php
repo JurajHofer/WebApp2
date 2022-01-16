@@ -12,10 +12,14 @@ if (isset($_SESSION["user"]))  {
 }
 
 require_once('./php/functions.php');
-require_once('./classes/tanks.classes.php');
+require_once('./classes/tankselect.classes.php');
+require_once('./classes/themeselect.classes.php');
 
-$database = new Tanks();
-$data = $database->selectTanks();
+$databaseTanks = new Tanks();
+$dataTanks = $databaseTanks->selectTanks();
+
+$databaseThemes = new Themes();
+$dataThemes = $databaseThemes->selectThemes();
 ?>
 
 <!DOCTYPE html>
@@ -37,226 +41,292 @@ $data = $database->selectTanks();
 <div class="row">
     <div class="centercontentAdmin">
         <div class="card">
+            <div class="cardpadding">
+                <h1>Zoznam prémiových tankov</h1>
+                <br>
+                <div style="overflow-x:auto;">
+                    <table class="poziadavky">
+                        <tr>
+                            <th>ID</th>
+                            <th>UID</th>
+                            <th>PRICE</th>
+                            <th>TIER</th>
+                            <th>TYPE</th>
+                            <th>NATIONALITY</th>
+                            <th>IMG</th>
+                        </tr>
+                        <?php
+                        $numberOfRows = $dataTanks->rowCount();
+                        $row = $dataTanks->fetchAll(PDO::FETCH_ASSOC);
+                        for ($i = 0; $i < $numberOfRows; $i++) {
+                            tankinfo($row[$i]["tank_uid"],$row[$i]["tank_price"],$row[$i]["tank_tier"],$row[$i]["tank_nationality"],$row[$i]["tank_type"],$row[$i]["tank_img"],$row[$i]["tank_id"]);
+                        }
+                        ?>
+                    </table>
+                </div>
+                <form action="includes/admin.inc.php" method="post">
+                    <div class="grid-containerRows">
+                        <div class="grid-container">
+                            <h2>Úprava parametrov tanku:</h2>
+                        </div>
+                        <div class="grid-container">
+                            <div class="field">
+                                <input type="number" name="iduprava" id="tankidupdate" placeholder="Zadaj ID tanku" min="1" max="500">
+                            </div>
+                        </div>
+                        <div class="grid-container">
+                            <button type="button" name="upravit" id="updatebtn" class="button"> ZMENIŤ</button>
+                        </div>
+                    </div>
+                    <div class="hiddenUpdate">
+                        <div style="overflow-x:auto;">
+                            <table class="poziadavky">
+                                <tr>
+                                    <th>UID</th>
+                                    <th>PRICE</th>
+                                    <th>TIER</th>
+                                    <th>TYPE</th>
+                                    <th>NATIONALITY</th>
+                                    <th>IMG</th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="field">
+                                            <input type="text" name="uid2" value="<?php echo $row[2]["tank_uid"]?>">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="field">
+                                            <input type="number" name="price2" min="0" max="100000" value="<?php echo $row[2]["tank_price"]?>">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="field">
+                                            <input list="tier" name="tier2" value="<?php echo $row[2]["tank_tier"]?>">
+                                            <datalist id="tier">
+                                                <option value="II">
+                                                <option value="III">
+                                                <option value="IV">
+                                                <option value="V">
+                                                <option value="VI">
+                                                <option value="VII">
+                                                <option value="VIII">
+                                            </datalist>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="field">
+                                            <input list="type" name="type2" value="<?php echo $row[2]["tank_type"]?>">
+                                            <datalist id="type">
+                                                <option value="ťažký tank">
+                                                <option value="stredný tank">
+                                                <option value="ľahký tank">
+                                                <option value="stíhač tankov">
+                                            </datalist>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="field">
+                                            <input list="nationality" name="nationality2" value="<?php echo $row[2]["tank_nationality"]?>">
+                                            <datalist id="nationality">
+                                                <option value="nemecký">
+                                                <option value="britský">
+                                                <option value="americký">
+                                                <option value="sovietsky">
+                                                <option value="japonský">
+                                                <option value="čínsky">
+                                                <option value="francúzsky">
+                                                <option value="poľský">
+                                                <option value="švédsky">
+                                                <option value="československý">
+                                            </datalist>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="field">
+                                            <input type="text" name="img2" value="<?php echo $row[2]["tank_img"]?>">
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <button type="submit" name="potvrditupravu" class="button"> POTVRDIŤ</button>
+                    </div>
+                    <hr>
+                    <div class="grid-containerRows">
+                        <div class="grid-container">
+                            <h2>Vymazanie tanku:</h2>
+                        </div>
+                        <div class="grid-container">
+                            <div class="field">
+                                <input type="number" name="tankiddelete" placeholder="Zadaj ID tanku" min="1" max="500">
+                            </div>
+                        </div>
+                        <div class="grid-container">
+                            <button type="submit" name="zmazat" id="deletebtn" class="button"> ZMAZAŤ</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="grid-containerRows">
+                        <div class="grid-container">
+                            <h2>Pridanie tanku:</h2>
+                        </div>
+                        <div class="grid-container">
 
-<!--                <div class="flex-containerColumns">-->
+                        </div>
+                        <div class="grid-container">
+                            <button type="button" class="button" id="insertbtn"> PRIDAŤ</button>
+                        </div>
+                    </div>
 
-            <h1>Zoznam prémiových tankov</h1>
-            <br>
-            <div style="overflow-x:auto;">
-                <table class="poziadavky">
-                    <tr>
-                        <th>ID</th>
-                        <th>UID</th>
-                        <th>PRICE</th>
-                        <th>TIER</th>
-                        <th>TYPE</th>
-                        <th>NATIONALITY</th>
-                        <th>IMG</th>
-                    </tr>
-                    <?php
-                    $numberOfRows = $data->rowCount();
-                    $row = $data->fetchAll(PDO::FETCH_ASSOC);
-                    for ($i = 0; $i < $numberOfRows; $i++) {
-                        tankinfo($row[$i]["tank_uid"],$row[$i]["tank_price"],$row[$i]["tank_tier"],$row[$i]["tank_nationality"],$row[$i]["tank_type"],$row[$i]["tank_img"],$row[$i]["tank_id"]);
-                    }
-                    ?>
-                </table>
+                    <div class="hiddenInsert">
+                        <div style="overflow-x:auto;">
+                            <table class="poziadavky">
+                                <tr>
+                                    <th>UID</th>
+                                    <th>PRICE</th>
+                                    <th>TIER</th>
+                                    <th>TYPE</th>
+                                    <th>NATIONALITY</th>
+                                    <th>IMG</th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="field">
+                                            <input type="text" name="uid" >
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="field">
+                                            <input type="number" name="price" min="0" max="100000" >
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="field">
+                                            <input list="tier" name="tier">
+                                            <datalist id="tier">
+                                                <option value="II">
+                                                <option value="III">
+                                                <option value="IV">
+                                                <option value="V">
+                                                <option value="VI">
+                                                <option value="VII">
+                                                <option value="VIII">
+                                            </datalist>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="field">
+                                            <input list="type" name="type">
+                                            <datalist id="type">
+                                                <option value="ťažký tank">
+                                                <option value="stredný tank">
+                                                <option value="ľahký tank">
+                                                <option value="stíhač tankov">
+                                            </datalist>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="field">
+                                            <input list="nationality" name="nationality">
+                                            <datalist id="nationality">
+                                                <option value="nemecký">
+                                                <option value="britský">
+                                                <option value="americký">
+                                                <option value="sovietsky">
+                                                <option value="japonský">
+                                                <option value="čínsky">
+                                                <option value="francúzsky">
+                                                <option value="poľský">
+                                                <option value="švédsky">
+                                                <option value="československý">
+                                            </datalist>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="field">
+                                            <input type="text" name="img" >
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <button type="submit" name="potvrditpridanie" class="button"> POTVRDIŤ</button>
+                    </div>
+                    <hr>
+                    <h1>Všeobecné otázky</h1>
+                    <br>
+                    <div style="overflow-x:auto;">
+                        <table class="poziadavky">
+                            <tr>
+                                <th>ID</th>
+                                <th>TEXT-ANSWER</th>
+                                <th>QUESTION</th>
+                                <th>CATEGORY</th>
+                            </tr>
+                            <?php
+                            $numberOfRows = $dataThemes->rowCount();
+                            $row = $dataThemes->fetchAll(PDO::FETCH_ASSOC);
+                            for ($i = 0; $i < $numberOfRows; $i++) {
+                                themeinfo($row[$i]["theme_text"],$row[$i]["theme_question"],$row[$i]["theme_category"],$row[$i]["theme_id"]);
+                            }
+                            ?>
+                        </table>
+                    </div>
+                    <div class="grid-containerRows">
+                        <div class="grid-container">
+                            <h2>Pridanie témy:</h2>
+                        </div>
+                        <div class="grid-container">
+                        </div>
+                        <div class="grid-container">
+                            <button type="button" id="insertbtnthemes" class="button"> PRIDAŤ</button>
+                        </div>
+                    </div>
+                    <div class="hiddeninsertthemes">
+                        <div class="grid-containerRows">
+                            <div class="grid-container">
+                                <div class="field">
+                                    <textarea name="themeanswer" cols="30" rows="6" placeholder="Odpoveď" ></textarea>
+                                </div>
+
+                            </div>
+                            <div class="grid-container">
+                                <div class="field">
+                                    <textarea name="themequestion" cols="15" rows="6" placeholder="Otázka" ></textarea>
+                                </div>
+                            </div>
+                            <div class="grid-container">
+                                <div class="field">
+                                    <input list="category" name="themecategory">
+                                    <datalist id="category">
+                                        <option value="Účet">
+                                        <option value="Platby">
+                                        <option value="Technické">
+                                        <option value="Herné">
+                                        <option value="Nahlásenie a odvolanie">
+                                    </datalist>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" name="potvrditpridanietemy" class="button"> POTVRDIŤ</button>
+                    </div>
+                    <hr>
+                    <div class="grid-containerRows">
+                        <div class="grid-container">
+                            <h2>Zmazanie témy:</h2>
+                        </div>
+                        <div class="grid-container">
+                            <div class="field">
+                                <input type="number" name="themeiddelete" placeholder="Zadaj ID témy" min="1" max="500">
+                            </div>
+                        </div>
+                        <div class="grid-container">
+                            <button type="submit" name="potvrditzmazanietemy" id="deletebtnthemes" class="button"> ZMAZAŤ</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <form action="includes/tanksmanagement.inc.php" method="post">
-                <br>
-                <div class="grid-containerRows">
-                    <div class="grid-container">
-                        <h2>Úprava parametrov tanku:</h2>
-                    </div>
-                    <div class="grid-container">
-                        <div class="field">
-                            <input type="number" name="iduprava" id="tankidupdate" placeholder="Zadaj ID tanku" min="1" max="500">
-                        </div>
-                    </div>
-                    <div class="grid-container">
-                        <button type="button" name="upravit" id="updatebtn" class="button"> ZMENIŤ</button>
-                    </div>
-                </div>
-                <br>
-                <div class="hiddenUpdate">
-                    <div style="overflow-x:auto;">
-                        <table class="poziadavky">
-                            <tr>
-                                <th>UID</th>
-                                <th>PRICE</th>
-                                <th>TIER</th>
-                                <th>TYPE</th>
-                                <th>NATIONALITY</th>
-                                <th>IMG</th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="field">
-                                        <input type="text" name="uid2" value="<?php echo $row[0]["tank_uid"] ?>">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="field">
-                                        <input type="number" name="price2" min="0" max="100000" >
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="field">
-                                        <input list="tier" name="tier2">
-                                        <datalist id="tier">
-                                            <option value="II">
-                                            <option value="III">
-                                            <option value="IV">
-                                            <option value="V">
-                                            <option value="VI">
-                                            <option value="VII">
-                                            <option value="VIII">
-                                        </datalist>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="field">
-                                        <input list="type" name="type2">
-                                        <datalist id="type">
-                                            <option value="ťažký tank">
-                                            <option value="stredný tank">
-                                            <option value="ľahký tank">
-                                            <option value="stíhač tankov">
-                                        </datalist>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="field">
-                                        <input list="nationality" name="nationality2">
-                                        <datalist id="nationality">
-                                            <option value="nemecký">
-                                            <option value="britský">
-                                            <option value="americký">
-                                            <option value="sovietsky">
-                                            <option value="japonský">
-                                            <option value="čínsky">
-                                            <option value="francúzsky">
-                                            <option value="poľský">
-                                            <option value="švédsky">
-                                            <option value="československý">
-                                        </datalist>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="field">
-                                        <input type="text" name="img2" >
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <button type="submit" name="potvrditupravu" class="button"> POTVRDIŤ</button>
-                </div>
-                <hr>
-                <div class="grid-containerRows">
-                    <div class="grid-container">
-                        <h2>Vymazanie tanku:</h2>
-                    </div>
-                    <div class="grid-container">
-                        <div class="field">
-                            <input type="number" name="idvymazanie" placeholder="Zadaj ID tanku" min="1" max="500">
-                        </div>
-                    </div>
-                    <div class="grid-container">
-                        <button type="submit" name="zmazat" class="button"> ZMAZAŤ</button>
-                    </div>
-                </div>
-                <br>
-                <hr>
-                <div class="grid-containerRows">
-                    <div class="grid-container">
-                        <h2>Pridanie tanku:</h2>
-                    </div>
-                    <div class="grid-container">
-
-                    </div>
-                    <div class="grid-container">
-                        <button type="button" class="button" id="insertbtn"> PRIDAŤ</button>
-                    </div>
-                </div>
-                <br>
-
-                <div class="hiddenInsert">
-                    <div style="overflow-x:auto;">
-                        <table class="poziadavky">
-                            <tr>
-                                <th>UID</th>
-                                <th>PRICE</th>
-                                <th>TIER</th>
-                                <th>TYPE</th>
-                                <th>NATIONALITY</th>
-                                <th>IMG</th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="field">
-                                        <input type="text" name="uid" >
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="field">
-                                        <input type="number" name="price" min="0" max="100000" >
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="field">
-                                        <input list="tier" name="tier">
-                                        <datalist id="tier">
-                                            <option value="II">
-                                            <option value="III">
-                                            <option value="IV">
-                                            <option value="V">
-                                            <option value="VI">
-                                            <option value="VII">
-                                            <option value="VIII">
-                                        </datalist>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="field">
-                                        <input list="type" name="type">
-                                        <datalist id="type">
-                                            <option value="ťažký tank">
-                                            <option value="stredný tank">
-                                            <option value="ľahký tank">
-                                            <option value="stíhač tankov">
-                                        </datalist>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="field">
-                                        <input list="nationality" name="nationality">
-                                        <datalist id="nationality">
-                                            <option value="nemecký">
-                                            <option value="britský">
-                                            <option value="americký">
-                                            <option value="sovietsky">
-                                            <option value="japonský">
-                                            <option value="čínsky">
-                                            <option value="francúzsky">
-                                            <option value="poľský">
-                                            <option value="švédsky">
-                                            <option value="československý">
-                                        </datalist>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="field">
-                                        <input type="text" name="img" >
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <button type="submit" name="potvrditpridanie" class="button"> POTVRDIŤ</button>
-                </div>
-                <hr>
-            </form>
         </div>
     </div>
 </div>

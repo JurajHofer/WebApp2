@@ -52,3 +52,25 @@ function tankinfo($tank_uid, $tank_price, $tank_tier, $tank_nationality, $tank_t
     END;
     echo $element;
 }
+
+function themeinfo($theme_text, $theme_question, $theme_category, $theme_id) {
+    $element = <<<END
+
+        <tr>
+            <td>$theme_id</td>
+            <td>$theme_text</td>
+            <td>$theme_question</td>
+            <td>$theme_category</td>
+        </tr>
+
+    END;
+    echo $element;
+}
+
+function themeinfo2($theme_text, $theme_question) {
+    $element = <<<END
+        <h4>$theme_question</h4>
+        <p>$theme_text</p>
+    END;
+    echo $element;
+}

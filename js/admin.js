@@ -34,3 +34,34 @@ toggleButtonUpdate.addEventListener('click', () => {
         }
     }
 });
+
+/*alert pri vymazani tanku*/
+// const toggleButtonDelete = document.querySelector('#deletebtn');
+// let idtankdelete = document.getElementById('tankiddelete');
+//
+// toggleButtonDelete.addEventListener('click', listener => {
+//     if (idtankdelete.value === '') {
+//         alert('Nezadal si ID tanku!');
+//     } else {
+//         let result = confirm('Ste si tým istý? Tank bude natrvalo odstránený!');
+//         if (result === false) {
+//            listener.preventDefault();
+//         }
+//     }
+// });
+
+/*odkrytie pridania temy*/
+const toggleButtonInsertTheme = document.querySelector('#insertbtnthemes');
+const divListInsertTheme = document.querySelector('.hiddeninsertthemes');
+
+divListInsertTheme.style.display = 'none';
+
+toggleButtonInsertTheme.addEventListener('click', () => {
+    if (divListInsertTheme.style.display === 'none') {
+        divListInsertTheme.style.display = 'block';
+        toggleButtonInsertTheme.innerHTML = 'ZRUŠIŤ';
+    } else {
+        divListInsertTheme.style.display = 'none';
+        toggleButtonInsertTheme.innerHTML = 'PRIDAŤ';
+    }
+});
