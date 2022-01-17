@@ -13,15 +13,15 @@
                 if (!$database->checkTank($_SESSION["userid"],$_POST["tank_id"])) {
                     $database->setTankToUser($_SESSION["userid"],$_POST["tank_id"]);
                     $database->setUserGolds($_SESSION["userid"],$_SESSION["usergolds"],$_POST["tank_price"]);
-                    print_r("Uspesne si zakupil tank");
+                    header("location: premiovyObchod.php?error=none");
                 } else {
-                    print_r("tento tank uz vlastnis");
+                    header("location: premiovyObchod.php?error=ownedtank");
                 }
             } else {
-                print_r("Nemas dostatok goldov na ucte");
+                header("location: premiovyObchod.php?error=notenoughgolds");
             }
         } else {
-            print_r("Musis sa prihlasit");
+            header("location: premiovyObchod.php?error=usernotfound");
         }
     }
 ?>
@@ -55,5 +55,7 @@
 <div class="footer">
     <?php include('./partials/footer.php') ?>
 </div>
+
+<script src="js/premobchod.js"></script>
 </body>
 </html>

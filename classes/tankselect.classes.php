@@ -4,7 +4,7 @@ include "dbh.classes.php";
 
 class Tanks extends Dbh {
     public function selectTanks() {
-        $stmt = $this->connect()->prepare('SELECT * FROM tanks');
+        $stmt = $this->connect()->prepare('SELECT * FROM tanks ORDER BY tank_tier DESC, tank_nationality,tank_type');
 
         if (!$stmt->execute()) {
             $stmt = null;

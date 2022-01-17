@@ -139,6 +139,8 @@ $numberOfRows = $dataTanks->rowCount();
 <div class="footer">
     <?php include('./partials/footer.php') ?>
 </div>
+
+<script src="js/podpora.js"></script>
 <script src="js/profil.js"></script>
 <script src="js/login.js"></script>
 </body>

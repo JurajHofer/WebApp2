@@ -1,18 +1,5 @@
-/*odkrytie pridania tanku*/
-const toggleButtonInsert = document.querySelector('#insertbtn');
-const divListInsert = document.querySelector('.hiddenInsert');
-
-divListInsert.style.display = 'none';
-
-toggleButtonInsert.addEventListener('click', () => {
-    if (divListInsert.style.display === 'none') {
-        divListInsert.style.display = 'block';
-        toggleButtonInsert.innerHTML = 'ZRUŠIŤ';
-    } else {
-        divListInsert.style.display = 'none';
-        toggleButtonInsert.innerHTML = 'PRIDAŤ';
-    }
-});
+odkrytie('#insertbtn','.hiddenInsert','ZRUŠIŤ','PRIDAŤ');
+odkrytie('#insertbtnthemes','.hiddeninsertthemes','ZRUŠIŤ','PRIDAŤ');
 
 /*odkrytie upravy parametrov tanku*/
 const toggleButtonUpdate = document.querySelector('#updatebtn');
@@ -35,48 +22,23 @@ toggleButtonUpdate.addEventListener('click', () => {
     }
 });
 
-/*alert pri vymazani tanku*/
-const toggleButtonDelete = document.querySelector('#deletebtn');
-let idtankdelete = document.getElementById('tankiddelete');
+function alert(button,id,alerttext,confirmtext) {
+    const togglebtn = document.querySelector(button);
+    let iddel = document.getElementById(id);
 
-toggleButtonDelete.addEventListener('click', listener => {
-    if (idtankdelete.value === '') {
-        alert('Nezadal si ID tanku!');
-    } else {
-        let result = confirm('Ste si tým istý? Tank bude natrvalo odstránený!');
-        if (result === false) {
-           listener.preventDefault();
+    togglebtn.addEventListener('click', listener => {
+        if (iddel.value === '') {
+            alert(alerttext);
+        } else {
+            let result = confirm(confirmtext);
+            if (result === false) {
+                listener.preventDefault();
+            }
         }
-    }
-});
+    });
+}
 
-/*odkrytie pridania temy*/
-const toggleButtonInsertTheme = document.querySelector('#insertbtnthemes');
-const divListInsertTheme = document.querySelector('.hiddeninsertthemes');
+alert('#deletebtn','tankiddelete','Nezadal si ID tanku!','Ste si tým istý? Tank bude natrvalo odstránený!');
+alert('#deletebtnthemes','themeiddelete','Nezadal si ID témy!','Ste si tým istý? Téma bude natrvalo odstránená!');
 
-divListInsertTheme.style.display = 'none';
 
-toggleButtonInsertTheme.addEventListener('click', () => {
-    if (divListInsertTheme.style.display === 'none') {
-        divListInsertTheme.style.display = 'block';
-        toggleButtonInsertTheme.innerHTML = 'ZRUŠIŤ';
-    } else {
-        divListInsertTheme.style.display = 'none';
-        toggleButtonInsertTheme.innerHTML = 'PRIDAŤ';
-    }
-});
-
-/*alert pri vymazani temy*/
-const toggleButtonDelete2 = document.querySelector('#deletebtnthemes');
-let idtankdelete2 = document.getElementById('themeiddelete');
-
-toggleButtonDelete2.addEventListener('click', listener => {
-    if (idtankdelete2.value === '') {
-        alert('Nezadal si ID témy!');
-    } else {
-        let result = confirm('Ste si tým istý? Téma bude natrvalo odstránená!');
-        if (result === false) {
-            listener.preventDefault();
-        }
-    }
-});

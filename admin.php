@@ -391,6 +391,7 @@ $dataContacts= $databaseContacts->selectContacts();
     <?php include('./partials/footer.php') ?>
 </div>
 
+<script src="js/podpora.js"></script>
 <script src="js/admin.js"></script>
 </body>
 </html>
