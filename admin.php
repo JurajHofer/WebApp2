@@ -239,8 +239,8 @@ $dataContacts= $databaseContacts->selectContacts();
                                     </td>
                                     <td>
                                         <div class="field">
-                                            <input list="tier" name="tier">
-                                            <datalist id="tier">
+                                            <input list="tier2" name="tier">
+                                            <datalist id="tier2">
                                                 <option value="II">
                                                 <option value="III">
                                                 <option value="IV">
@@ -253,8 +253,8 @@ $dataContacts= $databaseContacts->selectContacts();
                                     </td>
                                     <td>
                                         <div class="field">
-                                            <input list="type" name="type">
-                                            <datalist id="type">
+                                            <input list="type2" name="type">
+                                            <datalist id="type2">
                                                 <option value="ťažký tank">
                                                 <option value="stredný tank">
                                                 <option value="ľahký tank">
@@ -264,8 +264,8 @@ $dataContacts= $databaseContacts->selectContacts();
                                     </td>
                                     <td>
                                         <div class="field">
-                                            <input list="nationality" name="nationality">
-                                            <datalist id="nationality">
+                                            <input list="nationality2" name="nationality">
+                                            <datalist id="nationality2">
                                                 <option value="nemecký">
                                                 <option value="britský">
                                                 <option value="americký">
