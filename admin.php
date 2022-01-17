@@ -32,6 +32,29 @@ $dataContacts= $databaseContacts->selectContacts();
     <meta charset="UTF-8">
     <title>Svet Tankov</title>
     <link rel="stylesheet" media="screen" href="css.css">
+
+    <script
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous">
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#moznost").on("change",function () {
+                let hodnota = $(this).val();
+                $.ajax({
+                    url:"./php/filter.php",
+                    type:"POST",
+                    data:'request=' + hodnota,
+
+                    success:function (data){
+                        $(".container").html(data);
+                    }
+                });
+            });
+        });
+    </script>
+
 </head>
 <body>
 <div class="topnav">
@@ -80,25 +103,45 @@ $dataContacts= $databaseContacts->selectContacts();
                 }
                 ?>
                 <br>
-                <div style="overflow-x:auto;">
-                    <table class="poziadavky">
-                        <tr>
-                            <th>ID</th>
-                            <th>UID</th>
-                            <th>PRICE</th>
-                            <th>TIER</th>
-                            <th>TYPE</th>
-                            <th>NATIONALITY</th>
-                            <th>IMG</th>
-                        </tr>
-                        <?php
-                        $numberOfRows = $dataTanks->rowCount();
-                        $row = $dataTanks->fetchAll(PDO::FETCH_ASSOC);
-                        for ($i = 0; $i < $numberOfRows; $i++) {
-                            tankinfo($row[$i]["tank_uid"],$row[$i]["tank_price"],$row[$i]["tank_tier"],$row[$i]["tank_nationality"],$row[$i]["tank_type"],$row[$i]["tank_img"],$row[$i]["tank_id"]);
-                        }
-                        ?>
-                    </table>
+                <div class="grid-containerRowsMessage2">
+                    <div class="textright">
+                        <h3>Filtrovať tanky podľa typu:</h3>
+                    </div>
+                    <div class="grid-container">
+                        <div class="filter">
+                            <select name="moznost" id="moznost">
+                                <option value="" disabled="" selected=""> Vyber typ tanku </option>
+                                <option value="Ťažký tank">Ťažký tank </option>
+                                <option value="Stredný tank">Stredný tank </option>
+                                <option value="Ľahký tank">Ľahký tank </option>
+                                <option value="Stíhač tankov">Stíhač tankov </option>
+                                <option value="Stíhač tankova">Stíhač tankova </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="container">
+                    <div style="overflow-x:auto;">
+                        <table class="poziadavky">
+                            <tr>
+                                <th>ID</th>
+                                <th>UID</th>
+                                <th>PRICE</th>
+                                <th>TIER</th>
+                                <th>TYPE</th>
+                                <th>NATIONALITY</th>
+                                <th>IMG</th>
+                            </tr>
+                            <?php
+                            $numberOfRows = $dataTanks->rowCount();
+                            $row = $dataTanks->fetchAll(PDO::FETCH_ASSOC);
+                            for ($i = 0; $i < $numberOfRows; $i++) {
+                                tankinfo($row[$i]["tank_uid"],$row[$i]["tank_price"],$row[$i]["tank_tier"],$row[$i]["tank_nationality"],$row[$i]["tank_type"],$row[$i]["tank_img"],$row[$i]["tank_id"]);
+                            }
+                            ?>
+                        </table>
+                    </div>
                 </div>
                 <form action="includes/admin.inc.php" method="post">
                     <div class="grid-containerRows">

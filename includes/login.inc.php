@@ -19,7 +19,7 @@ if (isset($_POST["prihlasit"]))
     if ($_SESSION["user"] == "user") {
         header("location: ../index.php?error=none");
     } elseif ($_SESSION["user"] == "admin") {
-        header("location: ../admin.php?error=none");
+        header("location: ../admin.php");
     }
 }
 

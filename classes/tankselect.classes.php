@@ -22,7 +22,7 @@ class Tanks extends Dbh {
     }
 
     public function selectTanksPart() {
-        $stmt = $this->connect()->prepare('SELECT * FROM tanks ORDER BY tank_tier DESC, tank_nationality, tank_type LIMIT 10');
+        $stmt = $this->connect()->prepare('SELECT * FROM tanks ORDER BY tank_tier DESC, tank_nationality, tank_type LIMIT 8');
 
         if (!$stmt->execute()) {
             $stmt = null;

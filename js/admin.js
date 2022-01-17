@@ -22,7 +22,7 @@ toggleButtonUpdate.addEventListener('click', () => {
     }
 });
 
-function alert(button,id,alerttext,confirmtext) {
+function alerta(button,id,alerttext,confirmtext) {
     const togglebtn = document.querySelector(button);
     let iddel = document.getElementById(id);
 
@@ -38,7 +38,7 @@ function alert(button,id,alerttext,confirmtext) {
     });
 }
 
-alert('#deletebtn','tankiddelete','Nezadal si ID tanku!','Ste si tým istý? Tank bude natrvalo odstránený!');
-alert('#deletebtnthemes','themeiddelete','Nezadal si ID témy!','Ste si tým istý? Téma bude natrvalo odstránená!');
+alerta('#deletebtn','tankiddelete','Nezadal si ID tanku!','Ste si tým istý? Tank bude natrvalo odstránený!');
+alerta('#deletebtnthemes','themeiddelete','Nezadal si ID témy!','Ste si tým istý? Téma bude natrvalo odstránená!');
 
 
