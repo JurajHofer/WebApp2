@@ -10,7 +10,7 @@ class Deluser extends Dbh {
 
     public function deleteUser() {
         if ($this->emptyInput() == false) {
-            header("location: ../index.php?error=emptyinput");
+            header("location: ../profil.php?error=emptyinput");
             exit();
         }
 
@@ -32,13 +32,13 @@ class Deluser extends Dbh {
 
         if (!$stmt->execute(array((':uid')=>$uid))) {
             $stmt = null;
-            header("location: ../index.php?error=stmtfailed1");
+            header("location: ../profil.php?error=stmtfailed1");
             exit();
         }
 
         if ($stmt->rowCount() == 0) {
             $stmt = null;
-            header("location: ../index.php?error=usernotfound");
+            header("location: ../profil.php?error=usernotfound");
             exit();
         }
 

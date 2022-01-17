@@ -88,6 +88,24 @@ body {
     padding-top: 20px;
 }
 
+.form-result {
+    padding-top: 10px;
+    text-align: center;
+}
+
+.error {
+    color: darkred;
+}
+
+.success {
+    color: darkgreen;
+}
+
+.windowprofil .form-result{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
 .grid-containerRows, .grid-containerRowsEqual{
     display: grid;
     text-align: center;
@@ -179,10 +197,10 @@ body {
     /*height: 250px;*/
 }
 
-/*.form__input-error-message{
-    padding-top: 10px;
-    padding-bottom: 10px;
-}*/
+.form__input-error-message{
+    margin-top: 10px;
+    color: darkred;
+}
 
 .ponukycard hr {
     margin-top: 10px;
@@ -223,8 +241,6 @@ body {
 }
 
 form .textfield{
-    position: relative;
-    border-bottom: 2px solid #333333;
     margin: 30px 0;
 }
 
@@ -254,7 +270,17 @@ form .textfield{
     font-size: 16px;
     background: none;
     border: none;
+    border-bottom:2px solid #333333;
     outline: none;
+}
+
+::placeholder {
+    color: #555555;
+}
+
+.textfield input:focus {
+    border-bottom-color: orange;
+    transition: 1s;
 }
 
 .field input{
@@ -276,8 +302,6 @@ textarea {
     padding-top: 5px;
 }
 
-.textfield button{}
-
 /* treba na transparentne pozadie pri autodoplnani, lebo inak bz to zmenilo na bielu*/
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -287,35 +311,8 @@ input:-webkit-autofill:active {
 }
 
 .textfield label{
-    /*position: absolute;*/
-    /*top: 50%;*/
-    /*left: 5px;*/
-    /*transform: translateY(-50%);*/
     font-size: 16px;
     color: black;
-    /*pointer-events: none;*/
-}
-
-.textfield span::before{
-    /*content: '';*/
-    /*position: absolute;*/
-    /*top: 50px;*/
-    /*left: 0;*/
-    /*width: 0;*/
-    /*height: 2px;*/
-    /*background: orange;*/
-    /*transition: .5s;*/
-}
-
-.textfield input:focus ~ input,
-.textfield input:valid ~ input{
-    /*top: 1px;*/
-    color: orange;
-}
-
-.textfield input:focus ~ span::before,
-.textfield input:valid ~ span::before{
-    width: 100%;
 }
 
 input[type="submit"]{
@@ -388,6 +385,14 @@ input[type="submit"]:hover{
     min-height: 500px;
 }
 
+.windowprofil {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 200px;
+    margin-bottom: 200px;
+}
+
 /* Clear floats after the columns */
 .row:after {
     content: "";
@@ -408,6 +413,13 @@ input[type="submit"]:hover{
     .leftcolumn, .rightcolumn {
         width: 100%;
         padding: 0;
+    }
+}
+
+@media screen and (max-height: 800px) {
+    .windowprofil {
+        margin-top: 100px;
+        margin-bottom: 100px;
     }
 }
 

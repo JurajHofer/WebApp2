@@ -21,7 +21,7 @@ if (isset($_POST["zmenitudaje"]))
     $profile->updUser();
 
     // naspat na hl. stranku
-    header("location: ../index.php?error=none");
+    header("location: ../profil.php?error=none");
 }
 
 if (isset($_POST["zmenitheslo"]))
@@ -41,7 +41,7 @@ if (isset($_POST["zmenitheslo"]))
     $newpass->newpwdUser();
 
     // naspat na hl. stranku
-    header("location: ../index.php?error=none");
+    header("location: ../profil.php?error=none");
 }
 
 if (isset($_POST["zmazatucet"]))
@@ -58,5 +58,5 @@ if (isset($_POST["zmazatucet"]))
     $delete->deleteUser();
 
     // naspat na hl. stranku
-    header("location: ../index.php?error=none");
+    header("location: ../profil.php?error=none");
 }

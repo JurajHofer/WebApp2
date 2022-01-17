@@ -30,6 +30,22 @@ $databaseThemes = new Themes();
         <div class="card">
             <div class="ponukycard">
                 <h1>Často položené otázky</h1>
+                <?php
+                if (isset($_GET["error"])) {
+                    if ($_GET["error"] == "stmtfailed1" || $_GET["error"] == "stmtfailed2") {
+                        echo "<div class=\"form-result error\">Chyba pri načítaní údajov</div>";
+                    }
+                    if ($_GET["error"] == "emptyinput") {
+                        echo "<div class=\"form-result error\">Nezadal si všetky údaje</div>";
+                    }
+                    if ($_GET["error"] == "usernotfound") {
+                        echo "<div class=\"form-result error\">Najskôr sa musíš prihlásiť</div>";
+                    }
+                    if ($_GET["error"] == "none") {
+                        echo "<div class=\"form-result success\">Úspešne si odoslal správu</div>";
+                    }
+                }
+                ?>
                 <br>
                 <div class="grid-containerRows">
                     <div class="grid-containerleft">

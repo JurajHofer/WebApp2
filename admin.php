@@ -47,6 +47,38 @@ $dataContacts= $databaseContacts->selectContacts();
         <div class="card">
             <div class="cardpadding">
                 <h1>Zoznam prémiových tankov</h1>
+                <?php
+                if (isset($_GET["error"])) {
+
+                    if ($_GET["error"] == "stmtfailed1" || $_GET["error"] == "stmtfailed2") {
+                        echo "<div class=\"form-result error\">Chyba pri načítaní údajov</div>";
+                    }
+                    if ($_GET["error"] == "emptyinput") {
+                        echo "<div class=\"form-result error\">Nezadal si ID, ktoré chceš vymazať</div>";
+                    }
+                    if ($_GET["error"] == "emptyinputtank" || $_GET["error"] == "emptyinputtheme") {
+                        echo "<div class=\"form-result error\">Nezadal si všetky potrebné údaje</div>";
+                    }
+                    if ($_GET["error"] == "tanknotfound") {
+                        echo "<div class=\"form-result error\">Zadal si nesprávne ID tanku</div>";
+                    }
+                    if ($_GET["error"] == "themenotfound") {
+                        echo "<div class=\"form-result error\">Zadal si nesprávne ID témy</div>";
+                    }
+                    if ($_GET["error"] == "samedata") {
+                        echo "<div class=\"form-result error\">Nič si nezmenil</div>";
+                    }
+                    if ($_GET["error"] == "idnotexists") {
+                        echo "<div class=\"form-result error\">Nič si nezmenil</div>";
+                    }
+                    if ($_GET["error"] == "deletenotpossible") {
+                        echo "<div class=\"form-result error\">Tank nie je možné vymazať, vlastnia ho užívatelia</div>";
+                    }
+                    if ($_GET["error"] == "none") {
+                        echo "<div class=\"form-result success\">Úspešne si vykonal akciu</div>";
+                    }
+                }
+                ?>
                 <br>
                 <div style="overflow-x:auto;">
                     <table class="poziadavky">
@@ -163,7 +195,7 @@ $dataContacts= $databaseContacts->selectContacts();
                         </div>
                         <div class="grid-container">
                             <div class="field">
-                                <input type="number" name="tankiddelete" placeholder="Zadaj ID tanku" min="1" max="500">
+                                <input type="number" name="tankiddelete" id="tankiddelete" placeholder="Zadaj ID tanku" min="1" max="500">
                             </div>
                         </div>
                         <div class="grid-container">
@@ -318,11 +350,11 @@ $dataContacts= $databaseContacts->selectContacts();
                     <hr>
                     <div class="grid-containerRows">
                         <div class="grid-container">
-                            <h2>Zmazanie témy:</h2>
+                            <h2>Vymazanie témy:</h2>
                         </div>
                         <div class="grid-container">
                             <div class="field">
-                                <input type="number" name="themeiddelete" placeholder="Zadaj ID témy" min="1" max="500">
+                                <input type="number" name="themeiddelete" id="themeiddelete" placeholder="Zadaj ID témy" min="1" max="500">
                             </div>
                         </div>
                         <div class="grid-container">

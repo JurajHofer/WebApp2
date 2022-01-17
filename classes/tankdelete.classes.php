@@ -15,6 +15,11 @@ class TankDelete extends Dbh {
             exit();
         }
 
+        if ($this->checkDelete($this->id) == false) {
+            header("location: ../admin.php?error=deletenotpossible");
+            exit();
+        }
+
         $this->delTank($this->id);
     }
 
@@ -25,6 +30,24 @@ class TankDelete extends Dbh {
             $result = false;
         } else {
             $result = true;
+        }
+        return $result;
+    }
+
+    private function checkDelete($id) {
+        $stmt = $this->connect()->prepare('SELECT * FROM owned_tanks WHERE tank_id = :id;');
+
+        if (!$stmt->execute(array((':id')=>$id))) {
+            $stmt = null;
+            header("location: ../admin.php?error=stmtfailed2");
+            exit();
+        }
+
+        $result = null;
+        if ($stmt->rowCount() == 0) {
+            return true;
+        } else {
+            return false;
         }
         return $result;
     }

@@ -13,15 +13,15 @@ class Password extends Dbh {
 
     public function newpwdUser() {
         if ($this->emptyInput() == false) {
-            header("location: ../index.php?error=emptyinput");
+            header("location: ../profil.php?error=emptyinput");
             exit();
         }
         if ($this->pwdMatch() == false) {
-            header("location: ../index.php?error=passwordmatch");
+            header("location: ../profil.php?error=passwordmatch");
             exit();
         }
         if ($this->pwdLength() == false) {
-            header("location: ../index.php?error=passwordlength");
+            header("location: ../profil.php?error=passwordlength");
             exit();
         }
 
@@ -65,7 +65,7 @@ class Password extends Dbh {
 
         if (!$stmt->execute(array((':pwd')=>$hashedPwd, (':id')=>$id))) {
             $stmt = null;
-            header("location: ../index.php?error=stmtfailed1");
+            header("location: ../profil.php?error=stmtfailed1");
             exit();
         }
 

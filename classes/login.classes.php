@@ -39,7 +39,7 @@ class Login extends Dbh {
 
         if ($stmt->rowCount() == 0) {
             $stmt = null;
-            header("location: ../login.php?error=usernotfound1");
+            header("location: ../login.php?error=usernotfound");
             exit();
         }
 
@@ -61,7 +61,7 @@ class Login extends Dbh {
 
             if ($stmt->rowCount() == 0) {
                 $stmt = null;
-                header("location: ../login.php?error=usernotfound2");
+                header("location: ../login.php?error=usernotfound");
                 exit();
             }
 

@@ -15,7 +15,7 @@ class ThemeInsert extends Dbh {
     public function insertTheme()
     {
         if ($this->emptyInput() == false) {
-            header("location: ../admin.php?error=emptyinput");
+            header("location: ../admin.php?error=emptyinputtheme");
             exit();
         }
 

@@ -13,7 +13,7 @@
                 if (!$database->checkTank($_SESSION["userid"],$_POST["tank_id"])) {
                     $database->setTankToUser($_SESSION["userid"],$_POST["tank_id"]);
                     $database->setUserGolds($_SESSION["userid"],$_SESSION["usergolds"],$_POST["tank_price"]);
-                    print_r("Dostatok goldov");
+                    print_r("Uspesne si zakupil tank");
                 } else {
                     print_r("tento tank uz vlastnis");
                 }
@@ -23,7 +23,6 @@
         } else {
             print_r("Musis sa prihlasit");
         }
-        $tank_id = $_POST["tank_id"];
     }
 ?>
 
@@ -51,7 +50,6 @@
                 component($row[$i]["tank_uid"],$row[$i]["tank_price"],$row[$i]["tank_tier"],$row[$i]["tank_nationality"],$row[$i]["tank_type"],$row[$i]["tank_img"],$row[$i]["tank_id"]);
             }
         ?>
-
     </div>
 </div>
 <div class="footer">

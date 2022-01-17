@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,6 +19,19 @@
         <div class="center">
             <h3> PRIHLÁSENIE</h3>
             <form action="includes/login.inc.php" id="login" method="post">
+                <?php
+                if (isset($_GET["error"])) {
+                    if ($_GET["error"] == "usernotfound") {
+                        echo "<div class=\"form-result error\">Užívateľ s daným menom neexistuje</div>";
+                    }
+                    if ($_GET["error"] == "wrongpassword") {
+                        echo "<div class=\"form-result error\">Zadal si nesprávne heslo</div>";
+                    }
+                    if ($_GET["error"] == "stmtfailed1" || $_GET["error"] == "stmtfailed2") {
+                        echo "<div class=\"form-result error\">Chyba pri nacitani udajov</div>";
+                    }
+                }
+                ?>
                 <div class="textfield">
                     <label> Login</label>
                     <input type="text" class="form__input" id="uid" name="uid" placeholder="Zadaj meno" autofocus required>
@@ -25,7 +39,7 @@
                 </div>
                 <div class="textfield">
                     <label> Heslo</label>
-                    <input type="password" class="form__input" id="pwd" name="pwd" autofocus required>
+                    <input type="password" class="form__input" id="pwd" name="pwd" placeholder="Zadaj heslo" required>
                     <div class="form__input-error-message"></div>
                 </div>
                 <input type="submit" name="prihlasit" id="loginbtn" value="PRIHLÁSIŤ SA">

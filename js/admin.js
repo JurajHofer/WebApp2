@@ -36,19 +36,19 @@ toggleButtonUpdate.addEventListener('click', () => {
 });
 
 /*alert pri vymazani tanku*/
-// const toggleButtonDelete = document.querySelector('#deletebtn');
-// let idtankdelete = document.getElementById('tankiddelete');
-//
-// toggleButtonDelete.addEventListener('click', listener => {
-//     if (idtankdelete.value === '') {
-//         alert('Nezadal si ID tanku!');
-//     } else {
-//         let result = confirm('Ste si tým istý? Tank bude natrvalo odstránený!');
-//         if (result === false) {
-//            listener.preventDefault();
-//         }
-//     }
-// });
+const toggleButtonDelete = document.querySelector('#deletebtn');
+let idtankdelete = document.getElementById('tankiddelete');
+
+toggleButtonDelete.addEventListener('click', listener => {
+    if (idtankdelete.value === '') {
+        alert('Nezadal si ID tanku!');
+    } else {
+        let result = confirm('Ste si tým istý? Tank bude natrvalo odstránený!');
+        if (result === false) {
+           listener.preventDefault();
+        }
+    }
+});
 
 /*odkrytie pridania temy*/
 const toggleButtonInsertTheme = document.querySelector('#insertbtnthemes');
@@ -63,5 +63,20 @@ toggleButtonInsertTheme.addEventListener('click', () => {
     } else {
         divListInsertTheme.style.display = 'none';
         toggleButtonInsertTheme.innerHTML = 'PRIDAŤ';
+    }
+});
+
+/*alert pri vymazani temy*/
+const toggleButtonDelete2 = document.querySelector('#deletebtnthemes');
+let idtankdelete2 = document.getElementById('themeiddelete');
+
+toggleButtonDelete2.addEventListener('click', listener => {
+    if (idtankdelete2.value === '') {
+        alert('Nezadal si ID témy!');
+    } else {
+        let result = confirm('Ste si tým istý? Téma bude natrvalo odstránená!');
+        if (result === false) {
+            listener.preventDefault();
+        }
     }
 });

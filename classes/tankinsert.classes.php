@@ -21,7 +21,7 @@ class TankInsert extends Dbh {
     public function insertTank()
     {
         if ($this->emptyInput() == false) {
-            header("location: ../admin.php?error=emptyinput");
+            header("location: ../admin.php?error=emptyinputtank");
             exit();
         }
 

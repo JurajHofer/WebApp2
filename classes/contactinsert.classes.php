@@ -14,6 +14,11 @@ class ContactInsert extends Dbh {
 
     public function insertContact()
     {
+        if ($this->emptyInputUser() == false) {
+            header("location: ../podpora.php?error=usernotfound");
+            exit();
+        }
+
         if ($this->emptyInput() == false) {
             header("location: ../podpora.php?error=emptyinput");
             exit();
@@ -26,6 +31,17 @@ class ContactInsert extends Dbh {
     {
         $result = null;
         if (empty($this->category) || empty($this->text) || empty($this->user)) {
+            $result = false;
+        } else {
+            $result = true;
+        }
+        return $result;
+    }
+
+    private function emptyInputUser()
+    {
+        $result = null;
+        if (empty($this->user)) {
             $result = false;
         } else {
             $result = true;

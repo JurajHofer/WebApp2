@@ -23,12 +23,12 @@ class TankUpdate extends Dbh {
     public function updateTank()
     {
         if ($this->emptyInput() == false) {
-            header("location: ../admin.php?error=emptyinput");
+            header("location: ../admin.php?error=emptyinputtank");
             exit();
         }
 
         if ($this->checkTank($this->id) == false) {
-            header("location: ../admin.php?error=idnotexists");
+            header("location: ../admin.php?error=tanknotfound");
             exit();
         }
 
@@ -65,7 +65,7 @@ class TankUpdate extends Dbh {
     }
 
     protected function checkTank($id) {
-        $stmt = $this->connect()->prepare('SELECT tank_uid FROM tanks WHERE tank_id = ;id;');
+        $stmt = $this->connect()->prepare('SELECT tank_uid FROM tanks WHERE tank_id = :id;');
 
         if (!$stmt->execute(array((':id')=>$id))) {
             $stmt = null;

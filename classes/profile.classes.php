@@ -17,23 +17,23 @@ class Profile extends Dbh {
 
     public function updUser() {
         if ($this->emptyInput() == false) {
-            header("location: ../index.php?error=emptyinput");
+            header("location: ../profil.php?error=emptyinput");
             exit();
         }
         if ($this->invalidUid() == false) {
-            header("location: ../index.php?error=username");
+            header("location: ../profil.php?error=username");
             exit();
         }
         if ($this->uidTakenCheck() == false) {
-            header("location: ../index.php?error=useroremailtaken");
+            header("location: ../profil.php?error=useroremailtaken");
             exit();
         }
         if ($this->invalidEmail() == false) {
-            header("location: ../index.php?error=email");
+            header("location: ../profil.php?error=email");
             exit();
         }
         if ($this->uidLength() == false) {
-            header("location: ../index.php?error=uidlength");
+            header("location: ../profil.php?error=uidlength");
             exit();
         }
 
@@ -95,13 +95,13 @@ class Profile extends Dbh {
 
         if (!$stmt->execute(array((':uid')=>$uid, (':email')=>$email, (':id')=>$id))) {
             $stmt = null;
-            header("location: ../index.php?error=stmtfailed1");
+            header("location: ../profil.php?error=stmtfailed1");
             exit();
         }
 
         if ($stmt->rowCount() == 0) {
             $stmt = null;
-            header("location: ../index.php?error=samedata");
+            header("location: ../profil.php?error=samedata");
             exit();
         }
 
@@ -116,7 +116,7 @@ class Profile extends Dbh {
 
         if (!$stmt->execute(array((':uid')=>$uid, (':email')=>$email))) {
             $stmt = null;
-            header("location: ../index.php?error=stmtfailed2");
+            header("location: ../profil.php?error=stmtfailed2");
             exit();
         }
 

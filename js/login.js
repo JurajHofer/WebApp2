@@ -10,18 +10,12 @@ function clearInputError(inputElement) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    /*const loginForm = document.querySelector("#login");
-    const createAccountForm = document.querySelector("#createAccount");*/
-
     document.querySelectorAll(".form__input").forEach(inputElement => {
         inputElement.addEventListener("blur", e => {
             if (e.target.id === "uid" && e.target.value.length > 0 && e.target.value.length < 3) {
                 setInputError(inputElement, "Login musí obsahovať aspoň 3 znaky!");
             }
-            if (e.target.id === "uid1" && e.target.value.length >= 0 && e.target.value.length < 3) {
-                setInputError(inputElement, "Login musí obsahovať aspoň 3 znaky!");
-            }
-            if (e.target.id === "pwd" && e.target.value.length > 0 && e.target.value.length < 5) {
+            if ((e.target.id === "pwd" || e.target.id === "pwdrepeat") && e.target.value.length > 0 && e.target.value.length < 5) {
                 setInputError(inputElement, "Heslo musí obsahovať aspoň 5 znakov!");
             }
         });
