@@ -1,13 +1,14 @@
 <?php
 
 include "../classes/dbh.classes.php";
+include "functions.php";
 
 
 class TanksPart extends Dbh {
     public function selectTanksPart($newCounter) {
-        $stmt = $this->connect()->prepare('SELECT * FROM tanks FETCH FIRST ? ROWS ONLY');
-
-        if (!$stmt->execute(array($newCounter))) {
+        $stmt = $this->connect()->prepare('SELECT * FROM tanks ORDER BY tank_tier DESC, tank_nationality, tank_type LIMIT ?');
+        $stmt->bindParam(1,$newCounter,PDO::PARAM_INT);
+        if (!$stmt->execute()) {
             $stmt = null;
             header("location: premiovyObchod.php?error=stmtfailed1");
             exit();

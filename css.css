@@ -348,9 +348,28 @@ input[type="submit"]:hover{
     margin-bottom: 10px;
 }
 
-.zmenit[type="button"]:hover{
+.pridat{
+    border-radius: 8px;
+    background-color: orange;
+    font-size: 14px;
+    font-weight: bold;
+    height: 30px;
+    width: 250px;
+    cursor: pointer;
+    margin-top: 20px;
+    color: #333333;
+    border: 1px solid;
+    outline: none;
+}
+
+.zmenit[type="button"]:hover, .pridat[type="button"]:hover{
     border-color: orange;
     transition: .5s;
+}
+
+.centrovat{
+    display: flex;
+    justify-content: center;
 }
 
 .signuplink{
@@ -398,6 +417,10 @@ input[type="submit"]:hover{
     content: "";
     display: table;
     clear: both;
+}
+
+.centrovat {
+
 }
 
 /* Footer */

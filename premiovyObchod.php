@@ -39,7 +39,7 @@
     </script>
     <script>
         $(document).ready(function () {
-            const number = 4;
+            const number = 10;
             let counter = number;
             $("#nextbtn").click(function () {
                 counter += number;
@@ -69,7 +69,9 @@
         }
         ?>
     </div>
-    <button class="zmenit" type="button" id="nextbtn">UKÁZAŤ ĎAĽŠIE PONUKY</button>
+    <div class="centrovat">
+        <button class="pridat" type="button" id="nextbtn">UKÁZAŤ ĎAĽŠIE PONUKY</button>
+    </div>
 </div>
 <div class="footer">
     <?php include('./partials/footer.php') ?>
