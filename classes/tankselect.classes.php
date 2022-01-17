@@ -21,6 +21,24 @@ class Tanks extends Dbh {
         return $stmt;
     }
 
+    public function selectTanksPart() {
+        $stmt = $this->connect()->prepare('SELECT * FROM tanks ORDER BY tank_tier DESC, tank_nationality, tank_type LIMIT 4');
+
+        if (!$stmt->execute()) {
+            $stmt = null;
+            header("location: premiovyObchod.php?error=stmtfailed1");
+            exit();
+        }
+
+        if ($stmt->rowCount() == 0) {
+            $stmt = null;
+            header("location: premiovyObchod.php?error=datanotfound");
+            exit();
+        }
+
+        return $stmt;
+    }
+
     public function selectTanksType($type) {
         $stmt = $this->connect()->prepare('SELECT * FROM tanks WHERE tank_tier = :typ');
 
